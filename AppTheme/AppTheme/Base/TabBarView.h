@@ -11,6 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface UPTabBar : UITabBar
+
+@end
+
 @protocol TabbarViewDelegate <NSObject>
 
 @optional
@@ -20,12 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-
-
 @interface TabBarView : UIView
 
 @property (nonatomic, weak) id<TabbarViewDelegate> delegate;
 @property (nonatomic, assign) NSInteger selectedIndex;
+@property (nonatomic, assign) CGFloat afeAreaBottom;
 
 - (void)setupItemsWithTitles:(NSArray<NSString *> *)titles
 								normalImages:(NSArray<NSString *> *)normalImages

@@ -18,5 +18,16 @@
 	self.title = @"发现";
 	self.view.backgroundColor = UIColor.orangeColor;
 	
+	
 }
+
+
+- (NSString *)moreBtnImgName {
+	return @"设置-更多";
+}
+
+- (void)moreBtnClick {
+	NSLog(@"dianji geng duo");
+}
+
 @end

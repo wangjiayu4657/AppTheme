@@ -6,6 +6,7 @@
 //
 
 #import "HomeViewController.h"
+#import "SettingViewController.h"
 
 @interface HomeViewController ()
 
@@ -17,6 +18,23 @@
 	[super viewDidLoad];
 	self.title = @"首页";
 	self.view.backgroundColor = UIColor.greenColor;
+	
+
+	[self jy_layoutSubviews];
 }
+
+#pragma mark - 设置 UI
+
+- (void)jy_layoutSubviews {
+	
+}
+
+
+#pragma mark - events
+
+
+
+#pragma mark - getter
+
 
 @end

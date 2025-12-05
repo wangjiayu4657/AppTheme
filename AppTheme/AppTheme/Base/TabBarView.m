@@ -8,6 +8,19 @@
 #import "TabBarView.h"
 #import "Masonry.h"
 
+
+@implementation UPTabBar
+
+- (NSArray<UITabBarItem *> *)items {
+	return @[];
+}
+- (void)setItems:(NSArray<UITabBarItem *> *)items {}
+- (void)setItems:(NSArray<UITabBarItem *> *)items animated:(BOOL)animated {}
+
+@end
+
+
+
 @interface TabBarItem : UIView
 
 @property (nonatomic, assign) BOOL selected;
@@ -108,6 +121,7 @@
 @interface TabBarView()
 
 @property (nonatomic, strong) NSArray<TabBarItem *> *items;
+@property (nonatomic, strong) UIView *safeView;
 
 @end
 
@@ -117,7 +131,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
-
+		self.backgroundColor = UIColor.whiteColor;
 	}
 	return self;
 }
@@ -128,15 +142,19 @@
 - (void)jy_layoutSubviews {
 	if(!self.items.count) return;
 	
-	self.backgroundColor = UIColor.whiteColor;
+	[self addSubview:self.safeView];
+	[self.safeView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.bottom.right.equalTo(self);
+		make.height.mas_equalTo(34);
+	}];
 	
 	NSInteger count = self.items.count;
-	CGFloat itemWidth = (self.frame.size.width - 8 * 2 - (count - 1) * 8) / count;
-	
+	CGFloat itemWidth = (self.up_width - 8 * 2 - (count - 1) * 8) / count;
 	[self.items mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:8 leadSpacing:8 tailSpacing:8];
 	[self.items mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.bottom.equalTo(self);
+		make.top.equalTo(self);
 		make.width.mas_equalTo(itemWidth);
+		make.bottom.equalTo(self.safeView.mas_top);
 	}];
 }
 
@@ -186,5 +204,26 @@
 	}
 }
 
+
+#pragma mark - setter
+
+- (void)setSafeAreaBottom:(CGFloat)safeAreaBottom {
+	_afeAreaBottom = safeAreaBottom;
+	
+	if(safeAreaBottom != 34) {
+		[self.safeView mas_updateConstraints:^(MASConstraintMaker *make) {
+			make.height.mas_equalTo(safeAreaBottom);
+		}];
+	}
+}
+
+#pragma mark - getter
+
+- (UIView *)safeView {
+	if (!_safeView) {
+		_safeView = [[UIView alloc] init];
+	}
+	return _safeView;
+}
 
 @end

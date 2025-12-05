@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MarketViewController : UIViewController
+@interface MarketViewController : RootViewController
 
 @end
 
