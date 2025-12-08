@@ -11,6 +11,6 @@
 #import "Masonry.h"
 #import "UIView+Frames.h"
 #import "RootViewController.h"
-
+#import "UIColor+HexString.h"
 
 #endif /* PrefixHeader_pch */

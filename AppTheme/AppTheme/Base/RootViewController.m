@@ -156,7 +156,7 @@
 }
 
 - (UIImage *)navigationBarBackImage {
-	return [UIImage imageNamed:@"back_button_img"];
+	return [UIImage imageNamed:@"left_arrow_white"];
 }
 
 - (UIImage *)navigationBarBackgroundImage {

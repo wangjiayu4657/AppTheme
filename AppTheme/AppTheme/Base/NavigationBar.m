@@ -157,6 +157,13 @@
 	self.moreBtn.hidden = isHiddenRightBtn;
 }
 
+- (void)setBackBtnTitle:(NSString *)backBtnTitle {
+	_backBtnTitle = backBtnTitle;
+	
+	[self.backBtn setTitle:backBtnTitle forState:UIControlStateNormal];
+	[self.backBtn setImage:nil forState:UIControlStateNormal];
+}
+
 - (void)setRightBtnTitle:(NSString *)rightBtnTitle {
 	_rightBtnTitle = rightBtnTitle;
 	
@@ -176,7 +183,6 @@
 - (UIImageView *)bgImgView {
 	if (!_bgImgView) {
 		_bgImgView = [[UIImageView alloc] init];
-		_bgImgView.contentMode = UIViewContentModeScaleAspectFill;
 		_bgImgView.hidden = YES;
 	}
 	return _bgImgView;
@@ -186,7 +192,7 @@
 	if (!_titleLb) {
 		_titleLb = [[UILabel alloc] init];
 		_titleLb.text = @"";
-		_titleLb.textColor = [UIColor blackColor];
+		_titleLb.textColor = [UIColor whiteColor];
 		_titleLb.font = [UIFont boldSystemFontOfSize:18];
 	}
 	return _titleLb;
@@ -195,9 +201,9 @@
 - (UIButton *)backBtn {
 	if (!_backBtn) {
 		_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-		_backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-		[_backBtn setImage:[UIImage imageNamed:@"nav_arrow_left_white"] forState:UIControlStateNormal];
-		[_backBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+		_backBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+		[_backBtn setImage:[UIImage imageNamed:@"left_arrow_white"] forState:UIControlStateNormal];
+		[_backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		[_backBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _backBtn ;
@@ -207,7 +213,7 @@
 	if (!_moreBtn) {
 		_moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 		_moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-		[_moreBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+		[_moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		[_moreBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _moreBtn ;
