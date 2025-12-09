@@ -7,47 +7,119 @@
 
 #import "ThemeFontViewController.h"
 #import "NavigationBar.h"
+#import "FontSenderCell.h"
+#import "FontReceiverCell.h"
 
-@interface ThemeFontViewController ()<NavigationBarDelegate>
-@property(nonatomic, strong) NavigationBar *navBar;
+static NSString * const kFontSenderCellID = @"kFontSenderCellID";
+static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
+
+@interface ThemeFontViewController ()<UITableViewDelegate, UITableViewDataSource>
+
+@property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *sources;
+
 @end
+
 
 @implementation ThemeFontViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	self.title = @"设置字体大小";
+	self.backBtnTitle = @"取消";
+	self.moreBtnTitle = @"完成";
+	
 	[self jy_layoutSubviews];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	
-//	self.hidesNavigationBarWhenPush = YES;
-	[self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	
-	self.hidesNavigationBarWhenPush = NO;
+	[self initData];
 }
 
 
 #pragma mark - 设置 UI
 
 - (void)jy_layoutSubviews {
-	[self.view addSubview:self.navBar];
-	[self.navBar mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.top.right.equalTo(self.view);
-		make.height.mas_equalTo(100);
+	[self.view addSubview:self.tableView];
+	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
 	}];
 }
 
-- (void)viewSafeAreaInsetsDidChange {
-	[super viewSafeAreaInsetsDidChange];
+- (void)initData {
+	self.sources = @[
+		@[
+			@{
+				@"content": @"预览字体大小",
+				@"isSender": @(NO)
+			}
+		],
+		@[
+			@{
+				@"content": @"拖动下面的滑块, 可设置字体大小",
+				@"isSender": @(YES)
+			}
+		],
+		@[
+			@{
+				@"content": @"设置后, 会改变聊天和朋友圈中的字体大小. 如果在使用过程中存在问题或意见, 可以反馈给coderJy团队",
+				@"isSender": @(NO)
+			}
+		],
+	];
 	
-	self.navBar.topSafeArea = self.view.up_safeAreaInsets.top;
+	[self.tableView reloadData];
+}
+
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return self.sources.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return self.sources[section].count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSDictionary *param = self.sources[indexPath.section][indexPath.row];
+	BOOL isSender = [param[@"isSender"] boolValue];
+	
+	UITableViewCell *cell;
+	
+	if(isSender) {
+		FontSenderCell *senderCell = [tableView dequeueReusableCellWithIdentifier:kFontSenderCellID forIndexPath:indexPath];
+		senderCell.param = param;
+		cell = senderCell;
+	} else {
+		FontReceiverCell *receiverCell = [tableView dequeueReusableCellWithIdentifier:kFontReceiverCellID forIndexPath:indexPath];
+		receiverCell.param = param;
+		cell = receiverCell;
+	}
+	
+	return cell;
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return section == 0 ? 24 : 8;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+	return 8;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	UIView *headerView = [[UIView alloc] init];
+	headerView.backgroundColor = UIColor.clearColor;
+	return headerView;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	UIView *footerView = [[UIView alloc] init];
+	footerView.backgroundColor = UIColor.clearColor;
+	return footerView;
 }
 
 
@@ -60,15 +132,18 @@
 
 #pragma mark - getter
 
-- (NavigationBar *)navBar {
-	if (!_navBar) {
-		_navBar = [[NavigationBar alloc] init];
-		_navBar.bgImgName = @"首页-头部背景";
-		_navBar.backBtnTitle = @"取消";
-		_navBar.title = @"设置字体大小";
-		_navBar.delegate = self;
+- (UITableView *)tableView {
+	if (!_tableView) {
+		_tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+		_tableView.delegate = self;
+		_tableView.dataSource = self;
+		_tableView.estimatedRowHeight = 34;
+		_tableView.rowHeight = UITableViewAutomaticDimension;
+		_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+		_tableView.backgroundColor = [UIColor colorWithHexString:@"#F7F7F7"];
+		[_tableView registerClass:[FontSenderCell class] forCellReuseIdentifier:kFontSenderCellID];
+		[_tableView registerClass:[FontReceiverCell class] forCellReuseIdentifier:kFontReceiverCellID];
 	}
-	return _navBar;
+	return _tableView;
 }
-
 @end

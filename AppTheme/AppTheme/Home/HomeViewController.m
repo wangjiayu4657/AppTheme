@@ -18,7 +18,6 @@
 	[super viewDidLoad];
 	self.title = @"首页";
 	self.view.backgroundColor = UIColor.greenColor;
-	
 
 	[self jy_layoutSubviews];
 }

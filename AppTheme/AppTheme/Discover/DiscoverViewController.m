@@ -22,9 +22,9 @@
 }
 
 
-- (NSString *)moreBtnImgName {
-	return @"设置-更多";
-}
+//- (NSString *)moreBtnImgName {
+//	return @"设置-更多";
+//}
 
 - (void)moreBtnClick {
 	NSLog(@"dianji geng duo");

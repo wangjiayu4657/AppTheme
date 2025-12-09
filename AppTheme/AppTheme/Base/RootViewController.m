@@ -9,7 +9,10 @@
 #import "ThemeCommon.h"
 
 @interface RootViewController ()
+
+@property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
+
 @end
 
 
@@ -19,12 +22,7 @@
 	[super viewDidLoad];
 	
 	[self initUI];
-	[self initNavigationBarBack];
 	[self initNavigationBarAppearance];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
 }
 
 
@@ -38,6 +36,13 @@
 	}
 }
 
+
+#pragma mark - events
+
+- (void)backBtnClick {
+	[self dismiss];
+}
+
 - (void)moreBtnClick { }
 
 - (void)networkStateDidChange:(BOOL)available { }
@@ -48,37 +53,15 @@
 - (void)initUI {
 	self.view.backgroundColor = UIColor.greenColor;
 
+	UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
+	self.navigationItem.leftBarButtonItem = backItem;
+	
 	UIBarButtonItem *moreItem = [[UIBarButtonItem alloc] initWithCustomView:self.moreBtn];
 	self.navigationItem.rightBarButtonItem = moreItem;
 	
 	self.navigationController.navigationBar.backgroundColor = self.navigationBarColor;
 	self.navigationController.navigationBar.barTintColor = self.navigationBarColor;
 	[self.navigationController.navigationBar setBackgroundImage:self.navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
-}
-
-// 设置返回按钮
-- (void)initNavigationBarBack {
-	// 设置返回按钮图标
-	UIImage *backImage = self.navigationBarBackImage;
-	if(backImage.renderingMode != UIImageRenderingModeAlwaysOriginal) {
-		backImage = [backImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-	}
-	self.navigationController.navigationBar.backIndicatorImage = backImage;
-	self.navigationController.navigationBar.backIndicatorTransitionMaskImage = backImage;
-	
-	// 强制更新UI，高版本backImage不一致时会出现使用前一个vc的backImage
-	[self.navigationController.navigationBar setNeedsLayout];
-	[self.navigationController.navigationBar layoutIfNeeded];
-	
-	// 去掉返回按钮的文字
-	if (@available(iOS 14.0.1, *)) {
-		self.navigationItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
-	}
-	
-	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-																																					 style:UIBarButtonItemStylePlain
-																																					target:nil
-																																					action:nil];
 }
 
 - (void)initNavigationBarAppearance {
@@ -92,13 +75,6 @@
 				navigationBarAppearance.shadowColor = [UIColor clearColor];
 				navigationBarAppearance.shadowImage = [UIImage new];
 				navigationBarAppearance.titleTextAttributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:20]};
-				//设置返回按钮
-				UIImage * backImage = self.navigationBarBackImage;
-				if(backImage.renderingMode != UIImageRenderingModeAlwaysOriginal) {
-					backImage = [backImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-				}
-				[navigationBarAppearance setBackIndicatorImage:backImage transitionMaskImage:backImage];
-				
 				self.navigationController.navigationBar.scrollEdgeAppearance = navigationBarAppearance;
 				self.navigationController.navigationBar.standardAppearance = navigationBarAppearance;
 			} else {
@@ -118,6 +94,23 @@
 - (void)setHidesNavigationBarWhenPush:(BOOL)hidesNavigationBarWhenPush {
 	_hidesNavigationBarWhenPush = hidesNavigationBarWhenPush;
 	[self.navigationController setNavigationBarHidden:hidesNavigationBarWhenPush];
+}
+
+- (void)setIsHiddenBackBtn:(BOOL)isHiddenBackBtn {
+	_isHiddenBackBtn = isHiddenBackBtn;
+	self.backBtn.hidden = isHiddenBackBtn;
+}
+
+- (void)setBackBtnTitle:(NSString *)backBtnTitle {
+	_backBtnTitle = backBtnTitle;
+	[self.backBtn setTitle:backBtnTitle forState:UIControlStateNormal];
+	[self.backBtn setImage:nil forState:UIControlStateNormal];
+}
+
+- (void)setBackBtnImgName:(NSString *)backBtnImgName {
+	_backBtnImgName = backBtnImgName;
+	[self.backBtn setImage:[UIImage imageNamed:backBtnImgName] forState:UIControlStateNormal];
+	[self.backBtn setTitle:nil forState:UIControlStateNormal];
 }
 
 - (void)setIsHiddenMoreBtn:(BOOL)isHiddenMoreBtn {
@@ -180,12 +173,27 @@
 	return YES;
 }
 
+- (UIButton *)backBtn {
+	if (!_backBtn) {
+		_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+		_backBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+		_backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+		_backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
+		UIImage *backImg = self.backBtnImgName.length ? [UIImage imageNamed:self.backBtnImgName] : self.navigationBarBackImage;
+		[_backBtn setTitle:self.moreBtnTitle forState:UIControlStateNormal];
+		[_backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		[_backBtn setImage:backImg forState:UIControlStateNormal];
+		[_backBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+	}
+	return _backBtn ;
+}
+
 - (UIButton *)moreBtn {
 	if (!_moreBtn) {
 		_moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-		_moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+		_moreBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
 		[_moreBtn setTitle:self.moreBtnTitle forState:UIControlStateNormal];
-		[_moreBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+		[_moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		if(self.moreBtnImgName.length) {
 			[_moreBtn setImage:[UIImage imageNamed:self.moreBtnImgName] forState:UIControlStateNormal];
 		}

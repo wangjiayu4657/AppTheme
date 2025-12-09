@@ -12,6 +12,7 @@
 #import "DiscoverViewController.h"
 #import "ProfileViewController.h"
 #import "TabBarView.h"
+#import "ThemeFontViewController.h"
 
 
 @interface TabBarController ()<TabbarViewDelegate>
@@ -46,19 +47,24 @@
 }
 
 - (void)loadChildController {
-	HomeViewController *homeCtrl = [[HomeViewController alloc] init];
+//	HomeViewController *homeCtrl = [[HomeViewController alloc] init];
+	ThemeFontViewController *homeCtrl = [[ThemeFontViewController alloc] init];
+	homeCtrl.isHiddenBackBtn = YES;
 	homeCtrl.hidesBottomBarWhenPushed = NO;
 	NavigationViewController *homeNav = [[NavigationViewController alloc] initWithRootViewController:homeCtrl];
 	
 	MarketViewController *marketCtrl = [[MarketViewController alloc] init];
+	marketCtrl.isHiddenBackBtn = YES;
 	marketCtrl.hidesBottomBarWhenPushed = NO;
 	NavigationViewController *marketNav = [[NavigationViewController alloc] initWithRootViewController:marketCtrl];
 	
 	DiscoverViewController *discoverCtrl = [[DiscoverViewController alloc] init];
+	discoverCtrl.isHiddenBackBtn = YES;
 	discoverCtrl.hidesBottomBarWhenPushed = NO;
 	NavigationViewController *discoverNav = [[NavigationViewController alloc] initWithRootViewController:discoverCtrl];
 	
 	ProfileViewController *profileCtrl = [[ProfileViewController alloc] init];
+	profileCtrl.isHiddenBackBtn = YES;
 	profileCtrl.hidesBottomBarWhenPushed = NO;
 	NavigationViewController *profileNav = [[NavigationViewController alloc] initWithRootViewController:profileCtrl];
 	

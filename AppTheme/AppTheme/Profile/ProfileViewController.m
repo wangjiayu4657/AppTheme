@@ -25,7 +25,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	self.hidesNavigationBarWhenPush = YES;
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewSafeAreaInsetsDidChange {

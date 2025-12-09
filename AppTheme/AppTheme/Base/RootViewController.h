@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, readonly) UIColor *navigationBarTitleColor; 			  // navigationBar标题颜色, 覆盖getter返回自定义的
 @property(nonatomic, strong, readonly) UIFont *navigationBarTitleFont; 				  // navigationBar标题字体, 覆盖getter返回自定义的
 
+@property(nonatomic, assign) BOOL isHiddenBackBtn;										//是否隐藏返回按钮
+@property(nonatomic, strong) NSString *backBtnTitle;									//返回按钮名称
+@property(nonatomic, strong) NSString *backBtnImgName;								//返回按钮图标
+
 @property(nonatomic, assign) BOOL isHiddenMoreBtn;										//是否隐藏右侧按钮
 @property(nonatomic, strong) NSString *moreBtnTitle;									//右侧按钮名称
 @property(nonatomic, strong) NSString *moreBtnImgName;								//右侧按钮图标
