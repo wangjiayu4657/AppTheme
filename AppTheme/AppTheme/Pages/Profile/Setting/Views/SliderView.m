@@ -7,8 +7,10 @@
 
 #import "SliderView.h"
 #import "StepSlider.h"
+#import "FontManager.h"
 
 @interface SliderView()<StepSliderDelegate>
+
 @property(nonatomic, strong) UILabel *smallLb;
 @property(nonatomic, strong) UILabel *standardLb;
 @property(nonatomic, strong) UILabel *largerLb;
@@ -65,6 +67,34 @@
 
 - (void)slider:(StepSlider *)slider valueDidChanged:(CGFloat)value {
 	NSLog(@"value == %f", value);
+	
+	FontScale fontScale = [self getFontScale:value / 10];
+	[[FontManager sharedManager] updateFontScale:fontScale];
+}
+
+
+#pragma mark - private
+
+- (FontScale)getFontScale:(CGFloat)scale {
+	FontScale fontScale = FontScale10;
+	
+	if(scale == 1.0) {
+		fontScale = FontScale10;
+	} else if(scale == 1.1) {
+		fontScale = FontScale11;
+	} else if(scale == 1.2) {
+		fontScale = FontScale12;
+	} else if(scale == 1.3) {
+		fontScale = FontScale13;
+	} else if(scale == 1.4) {
+		fontScale = FontScale14;
+	} else if(scale == 1.5) {
+		fontScale = FontScale15;
+	} else if(scale == 1.6) {
+		fontScale = FontScale16;
+	}
+	
+	return fontScale;
 }
 
 
@@ -103,10 +133,10 @@
 - (StepSlider *)slider {
 	if (!_slider) {
 		_slider = [[StepSlider alloc] init];
-		_slider.value = 14;
-		_slider.stepValue = 2;
-		_slider.minimumValue = 12;
-		_slider.maximumValue = 24;
+		_slider.stepValue = 1;
+		_slider.minimumValue = 10;
+		_slider.maximumValue = 16;
+		_slider.value = [FontManager sharedManager].fontScale * 10;
 		_slider.delegate = self;
 	}
 	return _slider;

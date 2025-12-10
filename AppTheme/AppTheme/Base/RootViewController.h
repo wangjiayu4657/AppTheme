@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)networkStateDidChange:(BOOL)available;
 //- (void)errorViewTryAgain:(UPErrorView *)errorView;
 - (void)moreBtnClick;
+- (void)themeFontSizeDidChanged;
 
 @end
 

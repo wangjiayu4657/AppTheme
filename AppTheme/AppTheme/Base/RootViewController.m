@@ -7,6 +7,7 @@
 
 #import "RootViewController.h"
 #import "ThemeCommon.h"
+#import "NotificationNameConst.h"
 
 @interface RootViewController ()
 
@@ -23,6 +24,7 @@
 	
 	[self initUI];
 	[self initNavigationBarAppearance];
+	[self addNotification];
 }
 
 
@@ -46,6 +48,8 @@
 - (void)moreBtnClick { }
 
 - (void)networkStateDidChange:(BOOL)available { }
+
+- (void)themeFontSizeDidChanged { }
 
 
 #pragma mark - private
@@ -88,6 +92,12 @@
 	}
 }
 
+- (void)addNotification {
+	[[NSNotificationCenter defaultCenter] addObserver:self
+																					 selector:@selector(themeFontSizeDidChanged)
+																							 name:kFontSizeDidChangeNotification
+																						 object:nil];
+}
 
 #pragma mark - setter
 

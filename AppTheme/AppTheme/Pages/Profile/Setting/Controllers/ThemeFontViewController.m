@@ -38,6 +38,12 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 }
 
 
+- (void)themeFontSizeDidChanged {
+	[self.tableView reloadData];
+	NSLog(@"font size did changed");
+}
+
+
 #pragma mark - 设置 UI
 
 - (void)jy_layoutSubviews {

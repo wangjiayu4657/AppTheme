@@ -47,8 +47,8 @@
 }
 
 - (void)loadChildController {
-//	HomeViewController *homeCtrl = [[HomeViewController alloc] init];
-	ThemeFontViewController *homeCtrl = [[ThemeFontViewController alloc] init];
+	HomeViewController *homeCtrl = [[HomeViewController alloc] init];
+//	ThemeFontViewController *homeCtrl = [[ThemeFontViewController alloc] init];
 	homeCtrl.isHiddenBackBtn = YES;
 	homeCtrl.hidesBottomBarWhenPushed = NO;
 	NavigationViewController *homeNav = [[NavigationViewController alloc] initWithRootViewController:homeCtrl];

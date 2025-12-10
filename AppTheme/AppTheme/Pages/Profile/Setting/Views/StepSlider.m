@@ -7,12 +7,21 @@
 
 #import "StepSlider.h"
 
+@interface StepSlider()
+
+@property(nonatomic, assign) CGFloat curValue;
+
+@end
+
+
 @implementation StepSlider
 
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
-		_stepValue = 1.0f;
+		self.curValue = 0.0f;
+		self.stepValue = 1.0f;
+		
 		[self addTarget:self
 						 action:@selector(sliderValueChanged:)
 	 forControlEvents:UIControlEventValueChanged];
@@ -35,11 +44,16 @@
 	CGPoint location = [gesture locationInView:gesture.view];
 	CGFloat itemWidth = (self.up_width / 6);
 	CGFloat item = round(location.x / itemWidth) + 1;
-	CGFloat stepValue = item * self.stepValue + 10;
-	[super setValue:stepValue animated:NO];
+	CGFloat stepValue = item * self.stepValue + 9;
 	
-	if(self.delegate && [self.delegate respondsToSelector:@selector(slider:valueDidChanged:)]) {
-		[self.delegate slider:self valueDidChanged:stepValue];
+	if(self.curValue != stepValue) {
+		self.curValue = stepValue;
+		
+		[super setValue:stepValue animated:NO];
+		
+		if(self.delegate && [self.delegate respondsToSelector:@selector(slider:valueDidChanged:)]) {
+			[self.delegate slider:self valueDidChanged:stepValue];
+		}
 	}
 }
 
@@ -56,23 +70,13 @@
 
 #pragma mark - setter
 
-- (void)setValue:(float)value {
-	CGFloat steppedValue = round(value / self.stepValue) * self.stepValue;
-	
-	if(steppedValue != self.value) { // 如果值有变化，更新 slider
-		[super setValue:steppedValue];
-		
-		if(self.delegate && [self.delegate respondsToSelector:@selector(slider:valueDidChanged:)]) {
-			[self.delegate slider:self valueDidChanged:steppedValue];
-		}
-	}
-}
-
 // 重写 setValue:animated: 方法确保步进
 - (void)setValue:(float)value animated:(BOOL)animated {
 	CGFloat steppedValue = round(value / self.stepValue) * self.stepValue;
-	
-	if(steppedValue != self.value) { // 如果值有变化，更新 slider
+	NSLog(@"steppedValue == %f  value == %f",steppedValue,value);
+	if(self.curValue != steppedValue) {  // 如果值有变化，更新滑块位置
+		self.curValue = steppedValue;
+		
 		[super setValue:steppedValue animated:animated];
 		
 		if(self.delegate && [self.delegate respondsToSelector:@selector(slider:valueDidChanged:)]) {

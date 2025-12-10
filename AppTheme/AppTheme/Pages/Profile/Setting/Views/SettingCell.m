@@ -36,7 +36,6 @@
 	[self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.left.mas_equalTo(15);
 		make.bottom.mas_equalTo(-15);
-		make.height.mas_equalTo(18);
 	}];
 	
 	[self.contentView addSubview:self.switchBtn];
