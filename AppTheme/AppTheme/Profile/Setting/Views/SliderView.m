@@ -1,0 +1,115 @@
+//
+//  SliderView.m
+//  AppTheme
+//
+//  Created by 王家玉 on 2025/12/9.
+//
+
+#import "SliderView.h"
+#import "StepSlider.h"
+
+@interface SliderView()<StepSliderDelegate>
+@property(nonatomic, strong) UILabel *smallLb;
+@property(nonatomic, strong) UILabel *standardLb;
+@property(nonatomic, strong) UILabel *largerLb;
+@property(nonatomic, strong) StepSlider *slider;
+
+@end
+
+
+@implementation SliderView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+	if (self) {
+		[self jy_layoutSubviews];
+	}
+	return self;
+}
+
+
+#pragma mark - 设置 UI
+
+- (void)jy_layoutSubviews {
+	self.backgroundColor = UIColor.whiteColor;
+	
+	[self addSubview:self.slider];
+	[self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.mas_equalTo(20);
+		make.right.mas_equalTo(-20);
+		make.height.mas_equalTo(20);
+		make.centerY.equalTo(self);
+	}];
+	
+	[self addSubview:self.smallLb];
+	[self.smallLb mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.equalTo(self.slider);
+		make.bottom.equalTo(self.slider.mas_top).offset(-15);
+	}];
+	
+	[self addSubview:self.standardLb];
+	[self.standardLb mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.equalTo(self.smallLb.mas_right).offset(15);
+		make.centerY.equalTo(self.smallLb.mas_centerY);
+	}];
+	
+	[self addSubview:self.largerLb];
+	[self.largerLb mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.right.equalTo(self.slider.mas_right);
+		make.centerY.equalTo(self.smallLb.mas_centerY);
+	}];
+}
+
+
+#pragma mark - StepSliderDelegate
+
+- (void)slider:(StepSlider *)slider valueDidChanged:(CGFloat)value {
+	NSLog(@"value == %f", value);
+}
+
+
+#pragma mark - getter
+
+- (UILabel *)smallLb {
+	if (!_smallLb) {
+		_smallLb = [[UILabel alloc] init];
+		_smallLb.text = @"A";
+		_smallLb.textColor = [UIColor blackColor];
+		_smallLb.font = [UIFont systemFontOfSize:12];
+	}
+	return _smallLb;
+}
+
+- (UILabel *)standardLb {
+	if (!_standardLb) {
+		_standardLb = [[UILabel alloc] init];
+		_standardLb.text = @"标准";
+		_standardLb.textColor = [UIColor blackColor];
+		_standardLb.font = [UIFont systemFontOfSize:14];
+	}
+	return _standardLb;
+}
+
+- (UILabel *)largerLb {
+	if (!_largerLb) {
+		_largerLb = [[UILabel alloc] init];
+		_largerLb.text = @"A";
+		_largerLb.textColor = [UIColor blackColor];
+		_largerLb.font = [UIFont systemFontOfSize:24];
+	}
+	return _largerLb;
+}
+
+- (StepSlider *)slider {
+	if (!_slider) {
+		_slider = [[StepSlider alloc] init];
+		_slider.value = 14;
+		_slider.stepValue = 2;
+		_slider.minimumValue = 12;
+		_slider.maximumValue = 24;
+		_slider.delegate = self;
+	}
+	return _slider;
+}
+
+@end

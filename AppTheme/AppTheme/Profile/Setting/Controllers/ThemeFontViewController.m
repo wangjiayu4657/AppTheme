@@ -9,6 +9,8 @@
 #import "NavigationBar.h"
 #import "FontSenderCell.h"
 #import "FontReceiverCell.h"
+#import "SliderView.h"
+
 
 static NSString * const kFontSenderCellID = @"kFontSenderCellID";
 static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
@@ -16,6 +18,7 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 @interface ThemeFontViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) UITableView *tableView;
+@property(nonatomic, strong) SliderView *sliderView;
 @property(nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *sources;
 
 @end
@@ -40,7 +43,14 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 - (void)jy_layoutSubviews {
 	[self.view addSubview:self.tableView];
 	[self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(self.view);
+		make.left.top.right.equalTo(self.view);
+	}];
+	
+	[self.view addSubview:self.sliderView];
+	[self.sliderView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(self.tableView.mas_bottom);
+		make.left.bottom.right.equalTo(self.view);
+		make.height.mas_equalTo(120);
 	}];
 }
 
@@ -49,13 +59,13 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 		@[
 			@{
 				@"content": @"预览字体大小",
-				@"isSender": @(NO)
+				@"isSender": @(YES)
 			}
 		],
 		@[
 			@{
 				@"content": @"拖动下面的滑块, 可设置字体大小",
-				@"isSender": @(YES)
+				@"isSender": @(NO)
 			}
 		],
 		@[
@@ -145,5 +155,12 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 		[_tableView registerClass:[FontReceiverCell class] forCellReuseIdentifier:kFontReceiverCellID];
 	}
 	return _tableView;
+}
+
+- (SliderView *)sliderView {
+	if (!_sliderView) {
+		_sliderView = [[SliderView alloc] init];
+	}
+	return _sliderView;
 }
 @end
