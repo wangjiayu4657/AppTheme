@@ -33,28 +33,28 @@
   if (self = [super init]) {
     // 预设的字体缩放比例系数
     self.fontScaleMap = @{
-      @(0): @(1.0),
-      @(1): @(1.1),
-      @(2): @(1.2),
-      @(3): @(1.3),
-			@(4): @(1.4),
-			@(5): @(1.5),
-			@(6): @(1.6),
+      @(0): @(0.95),
+      @(1): @(1.00),
+      @(2): @(1.05),
+      @(3): @(1.10),
+			@(4): @(1.15),
+			@(5): @(1.20),
+			@(6): @(1.25),
     };
   }
   return self;
 }
 
 
-
 #pragma mark - public
 
 - (void)updateFontScale:(FontScale)fontScale {
-//	if(self.currentFontScale == fontScale) return;
-	
 	//先获取当前选中的缩放系数
 	CGFloat selScale = [[self.fontScaleMap objectForKey:@(fontScale)] floatValue];
+	if(self.fontScale == selScale) return;
+	
 	self.onceScale = selScale / self.fontScale;
+//	NSLog(@"onceScale == %f  selScale == %f",self.onceScale, selScale);
 	
 	[self saveFontScale:selScale];
 	
@@ -104,19 +104,19 @@
 	FontScale fontScale = FontScale10;
 	CGFloat scale = self.fontScale;
 
-	if(scale == 1.0) {
+	if(scale == 0.95) {
 		fontScale = FontScale10;
-	} else if(scale == 1.1) {
+	} else if(scale == 1.00) {
 		fontScale = FontScale11;
-	} else if(scale == 1.2) {
+	} else if(scale == 1.05) {
 		fontScale = FontScale12;
-	} else if(scale == 1.3) {
+	} else if(scale == 1.10) {
 		fontScale = FontScale13;
-	} else if(scale == 1.4) {
+	} else if(scale == 1.15) {
 		fontScale = FontScale14;
-	} else if(scale == 1.5) {
+	} else if(scale == 1.20) {
 		fontScale = FontScale15;
-	} else if(scale == 1.6) {
+	} else if(scale == 1.25) {
 		fontScale = FontScale16;
 	}
 	
@@ -134,7 +134,7 @@
 
 - (CGFloat)fontScale {
 	NSNumber *fontScale = [[NSUserDefaults standardUserDefaults] objectForKey:kAppFontScale];
-	NSLog(@"get save scale == %@",fontScale);
+//	NSLog(@"get save scale == %@",fontScale);
 	return fontScale ? [fontScale floatValue] : 1.0;
 }
 

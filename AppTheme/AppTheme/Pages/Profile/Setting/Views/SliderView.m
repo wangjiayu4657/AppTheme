@@ -8,6 +8,7 @@
 #import "SliderView.h"
 #import "StepSlider.h"
 #import "FontManager.h"
+#import "UIView+Theme.h"
 
 @interface SliderView()<StepSliderDelegate>
 
@@ -24,6 +25,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
+//		self.isNoSupportScale = YES;
 		[self jy_layoutSubviews];
 	}
 	return self;
@@ -68,7 +70,7 @@
 - (void)slider:(StepSlider *)slider valueDidChanged:(CGFloat)value {
 	NSLog(@"value == %f", value);
 	
-	FontScale fontScale = [self getFontScale:value / 10];
+	FontScale fontScale = [self getFontScale:value];
 	[[FontManager sharedManager] updateFontScale:fontScale];
 }
 
@@ -78,19 +80,19 @@
 - (FontScale)getFontScale:(CGFloat)scale {
 	FontScale fontScale = FontScale10;
 	
-	if(scale == 1.0) {
+	if(scale == 95) {
 		fontScale = FontScale10;
-	} else if(scale == 1.1) {
+	} else if(scale == 100) {
 		fontScale = FontScale11;
-	} else if(scale == 1.2) {
+	} else if(scale == 105) {
 		fontScale = FontScale12;
-	} else if(scale == 1.3) {
+	} else if(scale == 110) {
 		fontScale = FontScale13;
-	} else if(scale == 1.4) {
+	} else if(scale == 115) {
 		fontScale = FontScale14;
-	} else if(scale == 1.5) {
+	} else if(scale == 120) {
 		fontScale = FontScale15;
-	} else if(scale == 1.6) {
+	} else if(scale == 125) {
 		fontScale = FontScale16;
 	}
 	
@@ -125,7 +127,7 @@
 		_largerLb = [[UILabel alloc] init];
 		_largerLb.text = @"A";
 		_largerLb.textColor = [UIColor blackColor];
-		_largerLb.font = [UIFont systemFontOfSize:24];
+		_largerLb.font = [UIFont systemFontOfSize:18];
 	}
 	return _largerLb;
 }
@@ -133,10 +135,10 @@
 - (StepSlider *)slider {
 	if (!_slider) {
 		_slider = [[StepSlider alloc] init];
-		_slider.stepValue = 1;
-		_slider.minimumValue = 10;
-		_slider.maximumValue = 16;
-		_slider.value = [FontManager sharedManager].fontScale * 10;
+		_slider.stepValue = 5;
+		_slider.minimumValue = 95;
+		_slider.maximumValue = 125;
+		_slider.value = [FontManager sharedManager].fontScale * 100;
 		_slider.delegate = self;
 	}
 	return _slider;

@@ -191,7 +191,6 @@
 - (UILabel *)titleLb {
 	if (!_titleLb) {
 		_titleLb = [[UILabel alloc] init];
-		_titleLb.text = @"";
 		_titleLb.textColor = [UIColor whiteColor];
 		_titleLb.font = [UIFont boldSystemFontOfSize:18];
 	}

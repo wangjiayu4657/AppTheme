@@ -8,6 +8,7 @@
 #ifndef ThemeConst_h
 #define ThemeConst_h
 
+static NSString * const kAppFontSize = @"kAppFontSize";
 static NSString * const kAppFontScale = @"kAppFontScale";
 static NSString * const kAppDeltFontScale = @"kAppDeltFontScale";
 

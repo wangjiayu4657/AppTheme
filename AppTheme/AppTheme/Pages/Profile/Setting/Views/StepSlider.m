@@ -44,7 +44,7 @@
 	CGPoint location = [gesture locationInView:gesture.view];
 	CGFloat itemWidth = (self.up_width / 6);
 	CGFloat item = round(location.x / itemWidth) + 1;
-	CGFloat stepValue = item * self.stepValue + 9;
+	CGFloat stepValue = item * self.stepValue + 90;
 	
 	if(self.curValue != stepValue) {
 		self.curValue = stepValue;

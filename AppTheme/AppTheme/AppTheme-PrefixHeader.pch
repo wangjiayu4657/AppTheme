@@ -12,5 +12,8 @@
 #import "UIView+Frames.h"
 #import "RootViewController.h"
 #import "UIColor+HexString.h"
+#import "UIView+Theme.h"
+#import "UILabel+Theme.h"
+#import "UIButton+Theme.h"
 
 #endif /* PrefixHeader_pch */

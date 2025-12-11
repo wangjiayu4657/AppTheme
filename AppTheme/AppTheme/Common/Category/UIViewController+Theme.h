@@ -11,7 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (Theme)
 
-- (void)refreshFontsIfNeeded;
 - (void)updateFontTheme;
 
 

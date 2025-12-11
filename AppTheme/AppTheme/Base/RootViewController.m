@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
+@property(nonatomic, strong) UILabel *titleLb;
 
 @end
 
@@ -56,6 +57,10 @@
 
 - (void)initUI {
 	self.view.backgroundColor = UIColor.greenColor;
+	
+//	self.titleLb.textColor = self.navigationBarTitleColor;
+//	self.titleLb.font = self.navigationBarTitleFont;
+//	self.navigationController.navigationItem.titleView = self.titleLb;
 
 	UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
 	self.navigationItem.leftBarButtonItem = backItem;
@@ -78,7 +83,7 @@
 				navigationBarAppearance.backgroundImage = self.navigationBarBackgroundImage;
 				navigationBarAppearance.shadowColor = [UIColor clearColor];
 				navigationBarAppearance.shadowImage = [UIImage new];
-				navigationBarAppearance.titleTextAttributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:20]};
+//				navigationBarAppearance.titleTextAttributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:20]};
 				self.navigationController.navigationBar.scrollEdgeAppearance = navigationBarAppearance;
 				self.navigationController.navigationBar.standardAppearance = navigationBarAppearance;
 			} else {
@@ -100,6 +105,12 @@
 }
 
 #pragma mark - setter
+
+//- (void)setTitle:(NSString *)title {
+//	super.title = title;
+//	self.titleLb.text = title;
+//	[self.titleLb sizeToFit];
+//}
 
 - (void)setHidesNavigationBarWhenPush:(BOOL)hidesNavigationBarWhenPush {
 	_hidesNavigationBarWhenPush = hidesNavigationBarWhenPush;
@@ -167,7 +178,7 @@
 }
 
 - (UIColor *)navigationBarTitleColor {
-	return nil;
+	return [UIColor whiteColor];
 }
 
 - (UIFont *)navigationBarTitleFont {
@@ -183,9 +194,19 @@
 	return YES;
 }
 
+- (UILabel *)titleLb {
+	if (!_titleLb) {
+		_titleLb = [[UILabel alloc] init];
+		_titleLb.textColor = [UIColor whiteColor];
+		_titleLb.font = [UIFont boldSystemFontOfSize:20];
+	}
+	return _titleLb;
+}
+
 - (UIButton *)backBtn {
 	if (!_backBtn) {
 		_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+		_backBtn.isNotSupportScale = YES;
 		_backBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
 		_backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 		_backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
@@ -201,6 +222,7 @@
 - (UIButton *)moreBtn {
 	if (!_moreBtn) {
 		_moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+		_moreBtn.isNotSupportScale = YES;
 		_moreBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
 		[_moreBtn setTitle:self.moreBtnTitle forState:UIControlStateNormal];
 		[_moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

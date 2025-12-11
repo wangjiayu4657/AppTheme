@@ -10,6 +10,7 @@
 #import "FontManager.h"
 #import "UIViewController+RouteStack.h"
 #import "TabBarController.h"
+#import "ThemeFontViewController.h"
 
 @implementation UIWindow (Theme)
 
@@ -25,6 +26,27 @@
 	
 	//已存在的页面更新完之后需要重置一下零时的缩放系数
 	[[FontManager sharedManager] resetOnceScale];
+}
+
+- (void)updateFontInSubiews:(NSArray<UIView *>  *)subviews {
+	for (UIView *subview in subviews) {
+		[self updateFontWithSubiew:subview];
+	}
+}
+
+- (void)updateFontWithSubiew:(UIView *)subview {
+	if(!subview.isNoSupportScale) {
+		if ([subview isKindOfClass:[UILabel class]]) {
+			UILabel *label = (UILabel *)subview;
+			label.font = [UIFont systemFontOfSize:label.originalSize];
+		} else if ([subview isKindOfClass:[UIButton class]]) {
+			UIButton *btn = (UIButton *)subview;
+			btn.titleLabel.font = [UIFont systemFontOfSize:btn.titleLabel.originalSize];
+			[btn sizeToFit];
+		} else {
+			[self updateFontWithSubiew:subview];
+		}
+	}
 }
 
 @end

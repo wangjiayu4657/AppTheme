@@ -37,10 +37,8 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 	[self initData];
 }
 
-
 - (void)themeFontSizeDidChanged {
 	[self.tableView reloadData];
-	NSLog(@"font size did changed");
 }
 
 
@@ -143,6 +141,13 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 
 - (void)didSelectedBack {
 	[self dismiss];
+}
+
+
+#pragma mark - events
+
+- (void)moreBtnClick {
+	[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

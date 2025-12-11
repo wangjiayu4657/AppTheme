@@ -1,15 +1,15 @@
 //
-//  UIFont+Scale.h
-//  FontScale
+//  UILabel+Theme.h
+//  AppTheme
 //
-//  Created by 王家玉 on 2025/11/26.
+//  Created by 王家玉 on 2025/12/11.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIFont (Scale)
+@interface UILabel (Theme)
 
 @property(nonatomic, assign) CGFloat originalSize;
 

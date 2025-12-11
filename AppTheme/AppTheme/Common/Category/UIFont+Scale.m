@@ -10,20 +10,40 @@
 #import "FontManager.h"
 
 
+
 @implementation UIFont (Scale)
 
 + (void)load {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
 		theme_exchangeSelector([self class], @selector(systemFontOfSize:), @selector(jy_systemFontOfSize:));
+		theme_exchangeSelector([self class], @selector(boldSystemFontOfSize:), @selector(jy_boldSystemFontOfSize:));
   });
 }
 
-+ (UIFont *)jy_systemFontOfSize:(CGFloat)fontSize {
++ (UIFont *)jy_systemFontOfSize:(CGFloat)size {
 	FontManager *manager = [FontManager sharedManager];
-	CGFloat scale = manager.onceScale == 0 ? manager.fontScale : manager.onceScale;
-	CGFloat size = scale * fontSize;
-	return [self jy_systemFontOfSize:size];
+	UIFont *font = [self jy_systemFontOfSize:size * manager.fontScale];
+	font.originalSize = size;
+	return font;
+}
+
++ (UIFont *)jy_boldSystemFontOfSize:(CGFloat)size {
+	FontManager *manager = [FontManager sharedManager];
+	UIFont *font = [self jy_boldSystemFontOfSize:size * manager.fontScale];
+	font.originalSize = size;
+	return font;
+}
+
+
+#pragma mark - setter & getter
+
+- (CGFloat)originalSize {
+	return [objc_getAssociatedObject(self, @selector(originalSize)) floatValue];
+}
+
+- (void)setOriginalSize:(CGFloat)originalSize {
+	objc_setAssociatedObject(self, @selector(originalSize), @(originalSize), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
