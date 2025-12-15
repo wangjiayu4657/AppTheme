@@ -76,22 +76,24 @@
 #pragma mark - private
 
 - (FontScale)getFontScale:(CGFloat)scale {
-	FontScale fontScale = FontScale10;
+	FontScale fontScale = FontScale100;
 	
 	if(scale == 95) {
-		fontScale = FontScale10;
+		fontScale = FontScale095;
 	} else if(scale == 100) {
-		fontScale = FontScale11;
+		fontScale = FontScale100;
 	} else if(scale == 105) {
-		fontScale = FontScale12;
+		fontScale = FontScale105;
 	} else if(scale == 110) {
-		fontScale = FontScale13;
+		fontScale = FontScale110;
 	} else if(scale == 115) {
-		fontScale = FontScale14;
+		fontScale = FontScale115;
 	} else if(scale == 120) {
-		fontScale = FontScale15;
+		fontScale = FontScale120;
 	} else if(scale == 125) {
-		fontScale = FontScale16;
+		fontScale = FontScale125;
+	}  else if(scale == 130) {
+		fontScale = FontScale130;
 	}
 	
 	return fontScale;

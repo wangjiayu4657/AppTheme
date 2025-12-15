@@ -33,13 +33,14 @@
   if (self = [super init]) {
     // 预设的字体缩放比例系数
     self.fontScaleMap = @{
-      @(0): @(0.95),
-      @(1): @(1.00),
-      @(2): @(1.05),
-      @(3): @(1.10),
-			@(4): @(1.15),
-			@(5): @(1.20),
-			@(6): @(1.25),
+      @(FontScale095): @(0.95),
+      @(FontScale100): @(1.00),
+      @(FontScale105): @(1.05),
+      @(FontScale110): @(1.10),
+			@(FontScale115): @(1.15),
+			@(FontScale120): @(1.20),
+			@(FontScale125): @(1.25),
+			@(FontScale130): @(1.30),
     };
   }
   return self;
@@ -53,78 +54,16 @@
 	CGFloat selScale = [[self.fontScaleMap objectForKey:@(fontScale)] floatValue];
 	if(self.fontScale == selScale) return;
 	
-	self.onceScale = selScale / self.fontScale;
-//	NSLog(@"onceScale == %f  selScale == %f",self.onceScale, selScale);
-	
 	[self saveFontScale:selScale];
 	
 	[[UIApplication sharedApplication] updateFontTheme];
-	
 	[[NSNotificationCenter defaultCenter] postNotificationName:kFontSizeDidChangeNotification object:nil];
-}
-
-- (void)updateFontScaleWithFontType:(FontType)fontType {
-	if(self.currentFontType == fontType) return;
-	
-	//先获取当前选中的缩放系数
-  CGFloat selScale = [[self.fontScaleMap objectForKey:@(fontType)] floatValue];
-
-	self.onceScale = selScale / self.fontScale;
-	
-	[self saveFontScale:selScale];
-	
-	[[UIApplication sharedApplication] updateFontTheme];
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:kFontSizeDidChangeNotification object:nil];
-}
-
-- (void)resetOnceScale {
-	self.onceScale = 0;
 }
 
 
 #pragma mark - private
 
-- (FontType)currentFontType {
-	FontType curType = FontTypeNormal;
-	CGFloat scale = self.fontScale;
-	if(scale == 1.0) {
-		curType = FontTypeSmall;
-	} else if(scale == 1.1) {
-		curType = FontTypeNormal;
-	} else if(scale == 1.2) {
-		curType = FontTypeLarger;
-	} else if(scale == 1.3) {
-		curType = FontTypeExtraLarge;
-	}
-	return curType;
-}
-
-- (FontScale)currentFontScale {
-	FontScale fontScale = FontScale10;
-	CGFloat scale = self.fontScale;
-
-	if(scale == 0.95) {
-		fontScale = FontScale10;
-	} else if(scale == 1.00) {
-		fontScale = FontScale11;
-	} else if(scale == 1.05) {
-		fontScale = FontScale12;
-	} else if(scale == 1.10) {
-		fontScale = FontScale13;
-	} else if(scale == 1.15) {
-		fontScale = FontScale14;
-	} else if(scale == 1.20) {
-		fontScale = FontScale15;
-	} else if(scale == 1.25) {
-		fontScale = FontScale16;
-	}
-	
-	return fontScale;
-}
-
 - (void)saveFontScale:(CGFloat)fontScale {
-	NSLog(@"set save scale == %f",fontScale);
 	[[NSUserDefaults standardUserDefaults] setFloat:fontScale forKey:kAppFontScale];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -134,8 +73,32 @@
 
 - (CGFloat)fontScale {
 	NSNumber *fontScale = [[NSUserDefaults standardUserDefaults] objectForKey:kAppFontScale];
-//	NSLog(@"get save scale == %@",fontScale);
 	return fontScale ? [fontScale floatValue] : 1.0;
+}
+
+- (FontScale)currentFontScale {
+	FontScale fontScale = FontScale100;
+	CGFloat scale = self.fontScale;
+	
+	if(scale == 0.95) {
+		fontScale = FontScale095;
+	} else if(scale == 1.00) {
+		fontScale = FontScale100;
+	} else if(scale == 1.05) {
+		fontScale = FontScale105;
+	} else if(scale == 1.10) {
+		fontScale = FontScale110;
+	} else if(scale == 1.15) {
+		fontScale = FontScale115;
+	} else if(scale == 1.20) {
+		fontScale = FontScale120;
+	} else if(scale == 1.25) {
+		fontScale = FontScale125;
+	} else if(scale == 1.30) {
+		fontScale = FontScale130;
+	}
+	
+	return fontScale;
 }
 
 @end

@@ -16,39 +16,28 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
-  FontTypeSmall,        //小字体
-	FontTypeNormal,       //默认
-  FontTypeLarger,       //大字体
-  FontTypeExtraLarge,   //超大字体
-} FontType;
-
-typedef enum : NSUInteger {
-	FontScale10,   //放大系数为: 1.0
-	FontScale11,   //放大系数为: 1.1
-	FontScale12,   //放大系数为: 1.2
-	FontScale13,   //放大系数为: 1.3
-	FontScale14,   //放大系数为: 1.4
-	FontScale15,   //放大系数为: 1.5
-	FontScale16,   //放大系数为: 1.6
+	FontScale095,   //字体缩放系数为: 0.95
+	FontScale100,   //字体缩放系数为: 1.00
+	FontScale105,   //字体缩放系数为: 1.05
+	FontScale110,   //字体缩放系数为: 1.10
+	FontScale115,   //字体缩放系数为: 1.15
+	FontScale120,   //字体缩放系数为: 1.20
+	FontScale125,   //字体缩放系数为: 1.25
+	FontScale130,   //字体缩放系数为: 1.30
 } FontScale;
 
 @interface FontManager : NSObject
 
 + (instancetype)sharedManager;
 
-//一次性缩放比例, 只在用户切换字体时生效
-@property (nonatomic, assign) CGFloat onceScale;
-//当前选中的缩放系数
+//当前缩放类型
+@property(nonatomic, assign) FontScale currentFontScale;
+//字体缩放系数
 @property (nonatomic, readonly, assign) CGFloat fontScale;
-//当前放大类型
-@property (nonatomic,assign) FontType currentFontType;
 
 /// 更新字体大小
-/// - Parameter fontType: 字体大小类型
-- (void)updateFontScaleWithFontType:(FontType)fontType;
+/// - Parameter FontScale: 字体大小类型
 - (void)updateFontScale:(FontScale)fontScale;
-///重置零时缩放比例系数
-- (void)resetOnceScale;
 
 @end
 

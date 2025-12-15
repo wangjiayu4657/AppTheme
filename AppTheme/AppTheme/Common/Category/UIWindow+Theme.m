@@ -24,9 +24,6 @@
 			[controller updateFontTheme];
 		}
 	}
-	
-	//已存在的页面更新完之后需要重置一下零时的缩放系数
-	[[FontManager sharedManager] resetOnceScale];
 }
 
 @end
