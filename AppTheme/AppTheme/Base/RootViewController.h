@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)dismiss;  // 退出vc, 会根据vc是否为Presented来选择退出的方式
 - (void)networkStateDidChange:(BOOL)available;
 //- (void)errorViewTryAgain:(UPErrorView *)errorView;
+- (void)backBtnClick;
 - (void)moreBtnClick;
 - (void)themeFontSizeDidChanged;
 

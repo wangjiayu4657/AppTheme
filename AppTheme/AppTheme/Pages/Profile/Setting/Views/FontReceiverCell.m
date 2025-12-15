@@ -62,6 +62,7 @@
 	
 	NSString *content = param[@"content"];
 	self.contentLb.text = content;
+	self.contentLb.font = [UIFont systemFontOfSize:16];
 }
 
 

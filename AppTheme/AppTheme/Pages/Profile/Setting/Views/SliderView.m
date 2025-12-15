@@ -7,8 +7,8 @@
 
 #import "SliderView.h"
 #import "StepSlider.h"
-#import "FontManager.h"
 #import "UIView+Theme.h"
+#import "FontManager.h"
 
 @interface SliderView()<StepSliderDelegate>
 
@@ -69,7 +69,10 @@
 
 - (void)slider:(StepSlider *)slider valueDidChanged:(CGFloat)value {
 	FontScale fontScale = [self getFontScale:value];
-	[[FontManager sharedManager] updateFontScale:fontScale];
+	
+	if(self.delegate && [self.delegate respondsToSelector:@selector(sliderView:updateScale:FontScale:)]) {
+		[self.delegate sliderView:self updateScale:value/100 FontScale:fontScale];
+	}
 }
 
 

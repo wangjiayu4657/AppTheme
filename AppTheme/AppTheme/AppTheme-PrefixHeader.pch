@@ -15,5 +15,6 @@
 #import "UIView+Theme.h"
 #import "UILabel+Theme.h"
 #import "UIButton+Theme.h"
+#import "ThemeConst.h"
 
 #endif /* PrefixHeader_pch */

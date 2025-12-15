@@ -42,6 +42,10 @@
 			@(FontScale125): @(1.25),
 			@(FontScale130): @(1.30),
     };
+		
+		NSNumber *scale = [[NSUserDefaults standardUserDefaults] objectForKey:kAppFontScale];
+		CGFloat fontScale = [self handlerConversionAccuracyWithNumber:scale scale:2];
+		self.fontScale = fontScale ? fontScale : 1.0;
   }
   return self;
 }
@@ -51,10 +55,14 @@
 
 - (void)updateFontScale:(FontScale)fontScale {
 	//先获取当前选中的缩放系数
-	CGFloat selScale = [[self.fontScaleMap objectForKey:@(fontScale)] floatValue];
-	if(self.fontScale == selScale) return;
-	
-	[self saveFontScale:selScale];
+	NSNumber *selScale = [self.fontScaleMap objectForKey:@(fontScale)];
+	self.fontScale = [self handlerConversionAccuracyWithNumber:selScale scale:2];
+}
+
+- (void)saveFontScale:(FontScale)fontScale {
+	//先获取当前选中的缩放系数
+	NSNumber *selScale = [self.fontScaleMap objectForKey:@(fontScale)];
+	[self saveScale:selScale];
 	
 	[[UIApplication sharedApplication] updateFontTheme];
 	[[NSNotificationCenter defaultCenter] postNotificationName:kFontSizeDidChangeNotification object:nil];
@@ -63,22 +71,26 @@
 
 #pragma mark - private
 
-- (void)saveFontScale:(CGFloat)fontScale {
-	[[NSUserDefaults standardUserDefaults] setFloat:fontScale forKey:kAppFontScale];
+- (void)saveScale:(NSNumber *)scale {
+	[[NSUserDefaults standardUserDefaults] setObject:scale forKey:kAppFontScale];
 	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+//处理转换时的精度
+- (CGFloat)handlerConversionAccuracyWithNumber:(NSNumber *)number scale:(NSUInteger)scale {
+	// 放大指定倍数，进行整数运算，再缩小
+	long long multiplier = pow(10, scale);
+	long long integerValue = (long long)([number doubleValue] * multiplier + 0.5);
+	return (CGFloat)integerValue / multiplier;
 }
 
 
 #pragma mark - getter
 
-- (CGFloat)fontScale {
-	NSNumber *fontScale = [[NSUserDefaults standardUserDefaults] objectForKey:kAppFontScale];
-	return fontScale ? [fontScale floatValue] : 1.0;
-}
-
 - (FontScale)currentFontScale {
 	FontScale fontScale = FontScale100;
-	CGFloat scale = self.fontScale;
+	NSNumber *saveScale = [[NSUserDefaults standardUserDefaults] objectForKey:kAppFontScale];
+	CGFloat scale = [self handlerConversionAccuracyWithNumber:saveScale scale:2];
 	
 	if(scale == 0.95) {
 		fontScale = FontScale095;

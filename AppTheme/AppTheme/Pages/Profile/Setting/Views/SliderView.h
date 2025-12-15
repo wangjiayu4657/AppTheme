@@ -6,10 +6,20 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SliderView;
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SliderViewDelegate <NSObject>
+
+- (void)sliderView:(SliderView *)sliderView updateScale:(CGFloat)scale FontScale:(FontScale)fontScale;
+
+@end
+
+
 @interface SliderView : UIView
+
+@property(nonatomic, weak) id<SliderViewDelegate> delegate;
 
 @end
 

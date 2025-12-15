@@ -10,16 +10,19 @@
 #import "FontSenderCell.h"
 #import "FontReceiverCell.h"
 #import "SliderView.h"
+#import "FontManager.h"
 
 
 static NSString * const kFontSenderCellID = @"kFontSenderCellID";
 static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 
-@interface ThemeFontViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ThemeFontViewController ()<UITableViewDelegate, UITableViewDataSource, SliderViewDelegate>
 
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) SliderView *sliderView;
 @property(nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *sources;
+@property(nonatomic, assign) FontScale fontScale;
+@property(nonatomic, assign) FontScale originalFontScale;
 
 @end
 
@@ -32,9 +35,10 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 	self.title = @"设置字体大小";
 	self.backBtnTitle = @"取消";
 	self.moreBtnTitle = @"完成";
+	self.originalFontScale = [FontManager sharedManager].currentFontScale;
 	
-	[self jy_layoutSubviews];
 	[self initData];
+	[self jy_layoutSubviews];
 }
 
 - (void)themeFontSizeDidChanged {
@@ -137,16 +141,24 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 }
 
 
-#pragma mark - NavigationBarDelegate
+#pragma mark - SliderViewDelegate
 
-- (void)didSelectedBack {
-	[self dismiss];
+- (void)sliderView:(SliderView *)sliderView updateScale:(CGFloat)scale FontScale:(FontScale)fontScale {
+	self.fontScale = fontScale;
+	[[FontManager sharedManager] updateFontScale:fontScale];
+	[self.tableView reloadData];
 }
 
 
 #pragma mark - events
 
+- (void)backBtnClick {
+	[[FontManager sharedManager] updateFontScale:self.originalFontScale];
+	[super backBtnClick];
+}
+
 - (void)moreBtnClick {
+	[[FontManager sharedManager] saveFontScale:self.fontScale];
 	[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -171,7 +183,9 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 - (SliderView *)sliderView {
 	if (!_sliderView) {
 		_sliderView = [[SliderView alloc] init];
+		_sliderView.delegate = self;
 	}
 	return _sliderView;
 }
+
 @end
