@@ -10,7 +10,6 @@
 
 @implementation UIView (Theme)
 
-
 - (BOOL)isNoSupportScale {
 	return [objc_getAssociatedObject(self, @selector(isNoSupportScale)) boolValue];
 }

@@ -47,7 +47,7 @@
 		
 		[self addSubview:self.middleView];
 		[self.middleView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.mas_equalTo(62);
+			make.top.mas_equalTo(66);
 			make.centerX.equalTo(self.mas_centerX);
 			make.width.mas_equalTo(self.mas_width).multipliedBy(0.3);
 		}];
@@ -56,7 +56,7 @@
 		
 		[self addSubview:self.middleView];
 		[self.middleView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.mas_equalTo(62);
+			make.top.mas_equalTo(66);
 			make.centerX.equalTo(self);
 		}];
 	}

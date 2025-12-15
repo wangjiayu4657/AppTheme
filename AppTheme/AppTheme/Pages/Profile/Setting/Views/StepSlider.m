@@ -73,7 +73,6 @@
 // 重写 setValue:animated: 方法确保步进
 - (void)setValue:(float)value animated:(BOOL)animated {
 	CGFloat steppedValue = round(value / self.stepValue) * self.stepValue;
-	NSLog(@"steppedValue == %f  value == %f",steppedValue,value);
 	if(self.curValue != steppedValue) {  // 如果值有变化，更新滑块位置
 		self.curValue = steppedValue;
 		

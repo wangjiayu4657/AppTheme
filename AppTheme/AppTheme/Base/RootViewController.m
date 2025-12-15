@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
-@property(nonatomic, strong) UILabel *titleLb;
 
 @end
 
@@ -24,8 +23,14 @@
 	[super viewDidLoad];
 	
 	[self initUI];
-	[self initNavigationBarAppearance];
+//	[self initNavigationBarAppearance];
 	[self addNotification];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	[self initNavigationBarAppearance];
 }
 
 
@@ -56,11 +61,7 @@
 #pragma mark - private
 
 - (void)initUI {
-	self.view.backgroundColor = UIColor.greenColor;
-	
-//	self.titleLb.textColor = self.navigationBarTitleColor;
-//	self.titleLb.font = self.navigationBarTitleFont;
-//	self.navigationController.navigationItem.titleView = self.titleLb;
+	self.view.backgroundColor = UIColor.whiteColor;
 
 	UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
 	self.navigationItem.leftBarButtonItem = backItem;
@@ -76,6 +77,10 @@
 - (void)initNavigationBarAppearance {
 	// 设置navigationBar颜色, 这里的主要是为了处理push或者pop时的过渡效果
 	if(!self.hidesNavigationBarWhenPush) {
+		NSDictionary *textAttributes = @{
+			NSForegroundColorAttributeName: UIColor.whiteColor,
+			NSFontAttributeName: [UIFont boldSystemFontOfSize:18]
+		};
 //		[self.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
 			if (@available(iOS 13.0, *)) {
 				UINavigationBarAppearance *navigationBarAppearance = [UINavigationBarAppearance new];
@@ -83,7 +88,7 @@
 				navigationBarAppearance.backgroundImage = self.navigationBarBackgroundImage;
 				navigationBarAppearance.shadowColor = [UIColor clearColor];
 				navigationBarAppearance.shadowImage = [UIImage new];
-//				navigationBarAppearance.titleTextAttributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:20]};
+				navigationBarAppearance.titleTextAttributes = textAttributes;
 				self.navigationController.navigationBar.scrollEdgeAppearance = navigationBarAppearance;
 				self.navigationController.navigationBar.standardAppearance = navigationBarAppearance;
 			} else {
@@ -91,7 +96,7 @@
 				self.navigationController.navigationBar.shadowImage = [UIImage new];
 				self.navigationController.navigationBar.backgroundColor = self.navigationBarColor;
 				[self.navigationController.navigationBar setBackgroundImage:self.navigationBarBackgroundImage forBarMetrics:UIBarMetricsDefault];
-				self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.blackColor};
+				self.navigationController.navigationBar.titleTextAttributes = textAttributes;
 			}
 //		} completion:nil];
 	}
@@ -105,12 +110,6 @@
 }
 
 #pragma mark - setter
-
-//- (void)setTitle:(NSString *)title {
-//	super.title = title;
-//	self.titleLb.text = title;
-//	[self.titleLb sizeToFit];
-//}
 
 - (void)setHidesNavigationBarWhenPush:(BOOL)hidesNavigationBarWhenPush {
 	_hidesNavigationBarWhenPush = hidesNavigationBarWhenPush;
@@ -192,15 +191,6 @@
 - (BOOL)isNetworkAvailable {
 //	return UPTAFNetworkReachable;
 	return YES;
-}
-
-- (UILabel *)titleLb {
-	if (!_titleLb) {
-		_titleLb = [[UILabel alloc] init];
-		_titleLb.textColor = [UIColor whiteColor];
-		_titleLb.font = [UIFont boldSystemFontOfSize:20];
-	}
-	return _titleLb;
 }
 
 - (UIButton *)backBtn {

@@ -28,11 +28,21 @@
 		if(!subview.isNoSupportScale) {
 			if ([subview isKindOfClass:[UILabel class]]) {
 				UILabel *label = (UILabel *)subview;
-				label.font = [UIFont systemFontOfSize:label.originalSize];
+				UIFontDescriptorSymbolicTraits trait = label.font.fontDescriptor.symbolicTraits;
+				if(trait == UIFontDescriptorTraitBold) {
+					label.font = [UIFont boldSystemFontOfSize:label.originalSize];
+				} else {
+					label.font = [UIFont systemFontOfSize:label.originalSize];
+				}
 			} else if ([subview isKindOfClass:[UIButton class]]) {
 				UIButton *btn = (UIButton *)subview;
+				UIFontDescriptorSymbolicTraits trait = btn.titleLabel.font.fontDescriptor.symbolicTraits;
+				if(trait == UIFontDescriptorTraitBold) {
+					btn.titleLabel.font = [UIFont boldSystemFontOfSize:btn.titleLabel.originalSize];
+				} else {
 					btn.titleLabel.font = [UIFont systemFontOfSize:btn.titleLabel.originalSize];
-					[btn sizeToFit];
+				}
+				[btn sizeToFit];
 			} else {
 				[self refreshFontsInView:subview];
 			}

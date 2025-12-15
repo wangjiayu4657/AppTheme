@@ -18,8 +18,7 @@
 			[window updateFontTheme];
 		}
 	} else if(@available(iOS 11.0, *)) {
-		NSArray *windows = self.windows;
-		for (UIWindow *window in windows) {
+		for (UIWindow *window in self.windows) {
 			[window updateFontTheme];
 		}
 	}

@@ -68,8 +68,6 @@
 #pragma mark - StepSliderDelegate
 
 - (void)slider:(StepSlider *)slider valueDidChanged:(CGFloat)value {
-	NSLog(@"value == %f", value);
-	
 	FontScale fontScale = [self getFontScale:value];
 	[[FontManager sharedManager] updateFontScale:fontScale];
 }
