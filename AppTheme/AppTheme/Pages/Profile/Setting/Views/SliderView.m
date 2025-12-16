@@ -25,7 +25,6 @@
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
-//		self.isNoSupportScale = YES;
 		[self jy_layoutSubviews];
 	}
 	return self;
@@ -68,38 +67,38 @@
 #pragma mark - StepSliderDelegate
 
 - (void)slider:(StepSlider *)slider valueDidChanged:(CGFloat)value {
-	FontScale fontScale = [self getFontScale:value];
+	FontType fontType = [self getFontTypeWithValue:value];
 	
-	if(self.delegate && [self.delegate respondsToSelector:@selector(sliderView:updateScale:FontScale:)]) {
-		[self.delegate sliderView:self updateScale:value/100 FontScale:fontScale];
+	if(self.delegate && [self.delegate respondsToSelector:@selector(sliderView:updateFontScale:FontType:)]) {
+		[self.delegate sliderView:self updateFontScale:value/100 FontType:fontType];
 	}
 }
 
 
 #pragma mark - private
 
-- (FontScale)getFontScale:(CGFloat)scale {
-	FontScale fontScale = FontScale100;
+- (FontType)getFontTypeWithValue:(CGFloat)value {
+	FontType fontType = FontType100;
 	
-	if(scale == 95) {
-		fontScale = FontScale095;
-	} else if(scale == 100) {
-		fontScale = FontScale100;
-	} else if(scale == 105) {
-		fontScale = FontScale105;
-	} else if(scale == 110) {
-		fontScale = FontScale110;
-	} else if(scale == 115) {
-		fontScale = FontScale115;
-	} else if(scale == 120) {
-		fontScale = FontScale120;
-	} else if(scale == 125) {
-		fontScale = FontScale125;
-	}  else if(scale == 130) {
-		fontScale = FontScale130;
+	if(value == 95) {
+		fontType = FontType095;
+	} else if(value == 100) {
+		fontType = FontType100;
+	} else if(value == 105) {
+		fontType = FontType105;
+	} else if(value == 110) {
+		fontType = FontType110;
+	} else if(value == 115) {
+		fontType = FontType115;
+	} else if(value == 120) {
+		fontType = FontType120;
+	} else if(value == 125) {
+		fontType = FontType125;
+	}  else if(value == 130) {
+		fontType = FontType130;
 	}
 	
-	return fontScale;
+	return fontType;
 }
 
 

@@ -196,7 +196,6 @@
 - (UIButton *)backBtn {
 	if (!_backBtn) {
 		_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-		_backBtn.isNotSupportScale = YES;
 		_backBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
 		_backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 		_backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
@@ -212,7 +211,6 @@
 - (UIButton *)moreBtn {
 	if (!_moreBtn) {
 		_moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-		_moreBtn.isNotSupportScale = YES;
 		_moreBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
 		[_moreBtn setTitle:self.moreBtnTitle forState:UIControlStateNormal];
 		[_moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

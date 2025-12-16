@@ -10,12 +10,5 @@
 
 @implementation UIView (Theme)
 
-- (BOOL)isNoSupportScale {
-	return [objc_getAssociatedObject(self, @selector(isNoSupportScale)) boolValue];
-}
-
-- (void)setIsNoSupportScale:(BOOL)isNoSupportScale {
-	objc_setAssociatedObject(self, @selector(isNoSupportScale), @(isNoSupportScale), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
 
 @end

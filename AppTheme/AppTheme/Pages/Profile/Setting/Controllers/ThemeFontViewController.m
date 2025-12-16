@@ -21,8 +21,9 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) SliderView *sliderView;
 @property(nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *sources;
-@property(nonatomic, assign) FontScale fontScale;
-@property(nonatomic, assign) FontScale originalFontScale;
+
+@property(nonatomic, assign) FontType fontType;
+@property(nonatomic, assign) CGFloat originalScale;
 
 @end
 
@@ -35,7 +36,7 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 	self.title = @"设置字体大小";
 	self.backBtnTitle = @"取消";
 	self.moreBtnTitle = @"完成";
-	self.originalFontScale = [FontManager sharedManager].currentFontScale;
+	self.originalScale = [FontManager sharedManager].fontScale;
 	
 	[self initData];
 	[self jy_layoutSubviews];
@@ -143,9 +144,9 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 
 #pragma mark - SliderViewDelegate
 
-- (void)sliderView:(SliderView *)sliderView updateScale:(CGFloat)scale FontScale:(FontScale)fontScale {
-	self.fontScale = fontScale;
-	[[FontManager sharedManager] updateFontScale:fontScale];
+- (void)sliderView:(SliderView *)sliderView updateFontScale:(CGFloat)fontScale FontType:(FontType)fontType {
+	self.fontType = fontType;
+	[FontManager sharedManager].fontScale = fontScale;
 	[self.tableView reloadData];
 }
 
@@ -153,12 +154,12 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 #pragma mark - events
 
 - (void)backBtnClick {
-	[[FontManager sharedManager] updateFontScale:self.originalFontScale];
+	[FontManager sharedManager].fontScale = self.originalScale;
 	[super backBtnClick];
 }
 
 - (void)moreBtnClick {
-	[[FontManager sharedManager] saveFontScale:self.fontScale];
+	[[FontManager sharedManager] updateFontType:self.fontType];
 	[self.navigationController popToRootViewControllerAnimated:YES];
 }
 

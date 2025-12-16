@@ -13,6 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, assign) CGFloat originalSize;
 
+///不支持正常字体缩放
++ (UIFont *)jy_notSupportScaleFontOfSize:(CGFloat)fontSize;
+
+///不支持粗字体的缩放
++ (UIFont *)jy_notSupportScaleBoldFontOfSize:(CGFloat)fontSize;
+
 @end
 
 NS_ASSUME_NONNULL_END

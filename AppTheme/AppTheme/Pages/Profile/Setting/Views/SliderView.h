@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol SliderViewDelegate <NSObject>
 
-- (void)sliderView:(SliderView *)sliderView updateScale:(CGFloat)scale FontScale:(FontScale)fontScale;
+- (void)sliderView:(SliderView *)sliderView updateFontScale:(CGFloat)fontScale FontType:(FontType)fontType;
 
 @end
 

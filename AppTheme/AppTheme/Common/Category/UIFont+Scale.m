@@ -21,6 +21,20 @@
   });
 }
 
+
+#pragma mark - public
+
++ (UIFont *)jy_notSupportScaleFontOfSize:(CGFloat)fontSize {
+	return [self jy_systemFontOfSize:fontSize];
+}
+
++ (UIFont *)jy_notSupportScaleBoldFontOfSize:(CGFloat)fontSize {
+	return [self jy_boldSystemFontOfSize:fontSize];
+}
+
+
+#pragma mark - private
+
 + (UIFont *)jy_systemFontOfSize:(CGFloat)size {
 	FontManager *manager = [FontManager sharedManager];
 	UIFont *font = [self jy_systemFontOfSize:size * manager.fontScale];

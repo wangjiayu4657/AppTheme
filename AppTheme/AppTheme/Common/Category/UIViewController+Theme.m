@@ -25,29 +25,28 @@
 
 - (void)refreshFontsInView:(UIView *)view {
 	for (UIView *subview in view.subviews) {
-		if(!subview.isNoSupportScale) {
-			if ([subview isKindOfClass:[UILabel class]]) {
-				UILabel *label = (UILabel *)subview;
-				UIFontDescriptorSymbolicTraits trait = label.font.fontDescriptor.symbolicTraits;
-				if(trait == UIFontDescriptorTraitBold) {
-					label.font = [UIFont boldSystemFontOfSize:label.originalSize];
-				} else {
-					label.font = [UIFont systemFontOfSize:label.originalSize];
-				}
-			} else if ([subview isKindOfClass:[UIButton class]]) {
-				UIButton *btn = (UIButton *)subview;
-				UIFontDescriptorSymbolicTraits trait = btn.titleLabel.font.fontDescriptor.symbolicTraits;
-				if(trait == UIFontDescriptorTraitBold) {
-					btn.titleLabel.font = [UIFont boldSystemFontOfSize:btn.titleLabel.originalSize];
-				} else {
-					btn.titleLabel.font = [UIFont systemFontOfSize:btn.titleLabel.originalSize];
-				}
-				[btn sizeToFit];
-			} else {
-				[self refreshFontsInView:subview];
-			}
+		if ([subview isKindOfClass:[UILabel class]]) {
+			UILabel *label = (UILabel *)subview;
+			[self jy_updateFontWithLabel:label];
+		} else if ([subview isKindOfClass:[UIButton class]]) {
+			UIButton *btn = (UIButton *)subview;
+			[self jy_updateFontWithLabel:btn.titleLabel];
+			[btn sizeToFit];
+		} else {
+			[self refreshFontsInView:subview];
 		}
 	}
 }
+
+//更新字体缩放
+- (void)jy_updateFontWithLabel:(UILabel *)label  {
+	UIFontDescriptorSymbolicTraits trait = label.font.fontDescriptor.symbolicTraits;
+	if(trait == UIFontDescriptorTraitBold) {
+		label.font = [UIFont boldSystemFontOfSize:label.originalSize];
+	} else {
+		label.font = [UIFont systemFontOfSize:label.originalSize];
+	}
+}
+
 
 @end

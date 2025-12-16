@@ -9,17 +9,17 @@
 #define ThemeConst_h
 
 typedef enum : NSUInteger {
-	FontScale095,   //字体缩放系数为: 0.95
-	FontScale100,   //字体缩放系数为: 1.00
-	FontScale105,   //字体缩放系数为: 1.05
-	FontScale110,   //字体缩放系数为: 1.10
-	FontScale115,   //字体缩放系数为: 1.15
-	FontScale120,   //字体缩放系数为: 1.20
-	FontScale125,   //字体缩放系数为: 1.25
-	FontScale130,   //字体缩放系数为: 1.30
-} FontScale;
+	FontType095,   //字体缩放系数为: 0.95
+	FontType100,   //字体缩放系数为: 1.00
+	FontType105,   //字体缩放系数为: 1.05
+	FontType110,   //字体缩放系数为: 1.10
+	FontType115,   //字体缩放系数为: 1.15
+	FontType120,   //字体缩放系数为: 1.20
+	FontType125,   //字体缩放系数为: 1.25
+	FontType130,   //字体缩放系数为: 1.30
+} FontType;
 
-static NSString * const kAppFontSize = @"kAppFontSize";
+
 static NSString * const kAppFontScale = @"kAppFontScale";
 static NSString * const kAppDeltFontScale = @"kAppDeltFontScale";
 

@@ -14,7 +14,7 @@
 #import "UIColor+HexString.h"
 #import "UIView+Theme.h"
 #import "UILabel+Theme.h"
-#import "UIButton+Theme.h"
+#import "UIFont+Scale.h"
 #import "ThemeConst.h"
 
 #endif /* PrefixHeader_pch */

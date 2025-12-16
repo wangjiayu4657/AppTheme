@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (Theme)
-@property(nonatomic, assign) BOOL isNoSupportScale;  //是否支持字体缩放
+
 @end
 
 NS_ASSUME_NONNULL_END

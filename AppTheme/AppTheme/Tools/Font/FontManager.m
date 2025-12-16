@@ -13,7 +13,7 @@
 
 @interface FontManager()
 
-@property (nonatomic, strong) NSDictionary *fontScaleMap;
+@property (nonatomic, strong) NSDictionary *fontTypeMap;
 
 @end
 
@@ -32,15 +32,15 @@
 - (instancetype)init {
   if (self = [super init]) {
     // 预设的字体缩放比例系数
-    self.fontScaleMap = @{
-      @(FontScale095): @(0.95),
-      @(FontScale100): @(1.00),
-      @(FontScale105): @(1.05),
-      @(FontScale110): @(1.10),
-			@(FontScale115): @(1.15),
-			@(FontScale120): @(1.20),
-			@(FontScale125): @(1.25),
-			@(FontScale130): @(1.30),
+    self.fontTypeMap = @{
+      @(FontType095): @(0.95),
+      @(FontType100): @(1.00),
+      @(FontType105): @(1.05),
+      @(FontType110): @(1.10),
+			@(FontType115): @(1.15),
+			@(FontType120): @(1.20),
+			@(FontType125): @(1.25),
+			@(FontType130): @(1.30),
     };
 		
 		NSNumber *scale = [[NSUserDefaults standardUserDefaults] objectForKey:kAppFontScale];
@@ -53,15 +53,9 @@
 
 #pragma mark - public
 
-- (void)updateFontScale:(FontScale)fontScale {
+- (void)updateFontType:(FontType)fontType {
 	//先获取当前选中的缩放系数
-	NSNumber *selScale = [self.fontScaleMap objectForKey:@(fontScale)];
-	self.fontScale = [self handlerConversionAccuracyWithNumber:selScale scale:2];
-}
-
-- (void)saveFontScale:(FontScale)fontScale {
-	//先获取当前选中的缩放系数
-	NSNumber *selScale = [self.fontScaleMap objectForKey:@(fontScale)];
+	NSNumber *selScale = [self.fontTypeMap objectForKey:@(fontType)];
 	[self saveScale:selScale];
 	
 	[[UIApplication sharedApplication] updateFontTheme];
@@ -87,30 +81,30 @@
 
 #pragma mark - getter
 
-- (FontScale)currentFontScale {
-	FontScale fontScale = FontScale100;
+- (FontType)currentFontType {
+	FontType fontType = FontType100;
 	NSNumber *saveScale = [[NSUserDefaults standardUserDefaults] objectForKey:kAppFontScale];
 	CGFloat scale = [self handlerConversionAccuracyWithNumber:saveScale scale:2];
 	
 	if(scale == 0.95) {
-		fontScale = FontScale095;
+		fontType = FontType095;
 	} else if(scale == 1.00) {
-		fontScale = FontScale100;
+		fontType = FontType100;
 	} else if(scale == 1.05) {
-		fontScale = FontScale105;
+		fontType = FontType105;
 	} else if(scale == 1.10) {
-		fontScale = FontScale110;
+		fontType = FontType110;
 	} else if(scale == 1.15) {
-		fontScale = FontScale115;
+		fontType = FontType115;
 	} else if(scale == 1.20) {
-		fontScale = FontScale120;
+		fontType = FontType120;
 	} else if(scale == 1.25) {
-		fontScale = FontScale125;
+		fontType = FontType125;
 	} else if(scale == 1.30) {
-		fontScale = FontScale130;
+		fontType = FontType130;
 	}
 	
-	return fontScale;
+	return fontType;
 }
 
 @end
