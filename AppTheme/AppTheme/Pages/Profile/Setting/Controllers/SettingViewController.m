@@ -7,6 +7,7 @@
 
 #import "SettingViewController.h"
 #import "ThemeFontViewController.h"
+#import "LoginViewController.h"
 #import "SettingCell.h"
 
 typedef enum : NSUInteger {
@@ -19,7 +20,8 @@ typedef enum : NSUInteger {
 	SettingCellTypeDevice,							//设备
 	SettingCellTypeInformationRights,		//个人信息与权限
 	SettingCellTypeInformationList,			//个人信息收集清单
-	SettingCellTypeShareList						//第三方信息共享清单
+	SettingCellTypeShareList,						//第三方信息共享清单
+	SettingCellTypeLoginOut		  				//退出登录
 } SettingCellType;
 
 static NSString * const kSettingCellID = @"kSettingCellID";
@@ -102,6 +104,13 @@ static NSString * const kSettingCellID = @"kSettingCellID";
 				@"title": @"第三方信息共享清单",
 				@"style": @(SettingCellRihgtStyleArrow),
 				@"type" : @(SettingCellTypeShareList)
+			}
+		],
+		@[
+			@{
+				@"title": @"退出登录",
+				@"style": @(SettingCellRihgtStyleNone),
+				@"type" : @(SettingCellTypeLoginOut)
 			}
 		]
 	];
@@ -210,6 +219,12 @@ static NSString * const kSettingCellID = @"kSettingCellID";
 		case SettingCellTypeShareList: {
 			
 		}	break;
+			
+		case SettingCellTypeLoginOut: {
+			LoginViewController *loginCtrl = [[LoginViewController alloc] init];
+			loginCtrl.modalPresentationStyle = UIModalPresentationFullScreen;
+			[self.navigationController presentViewController:loginCtrl animated:YES completion:nil];
+		} break;
 			
 		default:
 			break;
