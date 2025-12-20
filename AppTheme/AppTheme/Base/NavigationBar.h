@@ -40,9 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) BOOL isHiddenBackBtn;			//是否隐藏左侧返回按钮
 @property (nonatomic,assign) BOOL isHiddenRightBtn;			//是否隐藏右侧按钮
 @property(nonatomic, strong) NSString *title;						//标题
-@property (nonatomic,assign) NSString *backBtnTitle;		//返回按钮名称
-@property (nonatomic,assign) NSString *rightBtnTitle;		//右侧按钮名称
-@property (nonatomic,assign) NSString *rightBtnImgName;	//右侧按钮图标
+@property (nonatomic,assign) NSString *backTitle;		    //返回按钮名称
+@property (nonatomic,assign) NSString *rightTitle;		  //右侧按钮名称
+@property (nonatomic,assign) NSString *backImgName;	    //左侧返回按钮图标
+@property (nonatomic,assign) NSString *rightImgName;	  //右侧按钮图标
 
 @end
 

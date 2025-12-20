@@ -38,7 +38,7 @@
 	
 	[self.view addSubview:self.loginView];
 	[self.loginView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self.navBar.mas_bottom).offset(20);
+		make.top.equalTo(self.navBar.mas_bottom).offset(10);
 		make.left.right.equalTo(self.view);
 	}];
 }
@@ -55,7 +55,7 @@
 - (NavigationBar *)navBar {
 	if (!_navBar) {
 		_navBar = [[NavigationBar alloc] init];
-		_navBar.backgroundColor = [UIColor cyanColor];
+		_navBar.backImgName = @"left_arrow_grey";
 		_navBar.delegate = self;
 	}
 	return _navBar;

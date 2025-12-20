@@ -61,7 +61,7 @@
 		_navBar = [[NavigationBar alloc] init];
 		_navBar.title = @"我的";
 		_navBar.isHiddenBackBtn = YES;
-		_navBar.rightBtnImgName = @"我的-设置";
+		_navBar.rightImgName = @"我的-设置";
 		_navBar.delegate = self;
 		_navBar.textColor = UIColor.whiteColor;
 		_navBar.backgroundColor = UIColor.purpleColor;

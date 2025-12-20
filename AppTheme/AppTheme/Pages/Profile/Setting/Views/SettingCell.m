@@ -74,7 +74,12 @@
 - (void)setParam:(NSDictionary *)param {
 	_param = param;
 	
-	self.titleLb.text = param[@"title"];
+	NSString *title = param[@"title"];
+	self.titleLb.text = title;
+	if([title isEqualToString:@"退出登录"]) {
+		self.titleLb.textAlignment = NSTextAlignmentCenter;
+	}
+	
 	self.style = [param[@"style"] integerValue];
 	
 	self.switchBtn.hidden = !(self.style == SettingCellRihgtStyleSwitch);

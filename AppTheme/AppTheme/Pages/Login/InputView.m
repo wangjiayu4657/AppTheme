@@ -98,10 +98,10 @@
 	
 	NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithString:placeholder];
 	[attribute addAttributes:@{
-		NSForegroundColorAttributeName : [UIColor colorWithHexString:@"#666666"]
+		NSForegroundColorAttributeName : [UIColor colorWithHexString:@"#999999"]
 	} range:NSMakeRange(0, placeholder.length)];
 	
-	self.textField.attributedText = attribute;
+	self.textField.attributedPlaceholder = attribute;
 }
 
 
@@ -122,6 +122,7 @@
 	if (!_textField) {
 		_textField = [[UITextField alloc] init];
 		_textField.font = [UIFont systemFontOfSize:14];
+		_textField.textColor = [UIColor colorWithHexString:@"#333333"];
 	}
 	return _textField;
 }

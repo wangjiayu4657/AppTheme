@@ -36,6 +36,8 @@
 #pragma mark - 设置 UI
 
 - (void)jy_layoutSubviews {
+	self.backgroundColor = UIColor.whiteColor;
+	
 	[self addSubview:self.bgImgView];
 	[self.bgImgView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self);
@@ -157,21 +159,28 @@
 	self.moreBtn.hidden = isHiddenRightBtn;
 }
 
-- (void)setBackBtnTitle:(NSString *)backBtnTitle {
-	_backBtnTitle = backBtnTitle;
+- (void)setBackTitle:(NSString *)backBtnTitle {
+	_backTitle = backBtnTitle;
 	
 	[self.backBtn setTitle:backBtnTitle forState:UIControlStateNormal];
 	[self.backBtn setImage:nil forState:UIControlStateNormal];
 }
 
-- (void)setRightBtnTitle:(NSString *)rightBtnTitle {
-	_rightBtnTitle = rightBtnTitle;
+- (void)setRightTitle:(NSString *)rightBtnTitle {
+	_rightTitle = rightBtnTitle;
 	
 	[self.moreBtn setTitle:rightBtnTitle forState:UIControlStateNormal];
 }
 
-- (void)setRightBtnImgName:(NSString *)rightBtnImgName {
-	_rightBtnImgName = rightBtnImgName;
+- (void)setBackImgName:(NSString *)backImgName {
+	_backImgName = backImgName;
+	
+	UIImage *btnImg = [UIImage imageNamed:backImgName];
+	[self.backBtn setImage:btnImg forState:UIControlStateNormal];
+}
+
+- (void)setRightImgName:(NSString *)rightBtnImgName {
+	_rightImgName = rightBtnImgName;
 	
 	UIImage *btnImg = [UIImage imageNamed:rightBtnImgName];
 	[self.moreBtn setImage:btnImg forState:UIControlStateNormal];

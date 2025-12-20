@@ -10,7 +10,6 @@
 #import "FontManager.h"
 
 
-
 @implementation UIFont (Scale)
 
 + (void)load {

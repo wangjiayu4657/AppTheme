@@ -20,8 +20,10 @@
 	
 	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
 	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
-		for(UIViewController *controller in nav.viewControllers) {
-			[controller updateFontTheme];
+		if([nav isKindOfClass:[NavigationViewController class]]) {
+			for(UIViewController *controller in nav.viewControllers) {
+				[controller updateFontTheme];
+			}
 		}
 	}
 }

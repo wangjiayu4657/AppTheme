@@ -21,5 +21,7 @@
 	</dict>
 	<key>UIDesignRequiresCompatibility</key>
 	<true/>
+	<key>UIapplicationSupportsIndirectInputEvents</key>
+	<false/>
 </dict>
 </plist>

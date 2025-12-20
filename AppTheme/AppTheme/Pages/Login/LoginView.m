@@ -33,6 +33,8 @@
 #pragma mark - 设置 UI
 
 - (void)jy_layoutSubviews {
+	self.backgroundColor = UIColor.whiteColor;
+	
 	[self addSubview:self.titleLb];
 	[self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.mas_equalTo(12);;
@@ -62,8 +64,8 @@
 	
 	[self addSubview:self.textView];
 	[self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.equalTo(self.checkBtn.mas_right).offset(6);
-		make.top.equalTo(self.checkBtn.mas_top).offset(-10);
+		make.left.equalTo(self.checkBtn.mas_right).offset(4);
+		make.top.equalTo(self.checkBtn.mas_top).offset(-9);
 		make.right.equalTo(self.codeInputView.mas_right);
 		make.height.mas_equalTo(58);
 	}];
@@ -93,8 +95,8 @@
 
 #pragma mark - event
 
-- (void)checkBtnClick {
-	
+- (void)checkBtnClick:(UIButton *)btn {
+	btn.selected = !btn.selected;
 }
 
 - (void)sureBtnClick {
@@ -134,7 +136,6 @@
 	} range:privateRange];
 	
 	self.textView.attributedText = attributedText;
-//	self.textView.font = [UIFont systemFontOfSize:10];
 }
 
 
@@ -179,7 +180,7 @@
 		_checkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 		[_checkBtn setImage:[UIImage imageNamed:@"check_unselect"] forState:UIControlStateNormal];
 		[_checkBtn setImage:[UIImage imageNamed:@"check_selected"] forState:UIControlStateSelected];
-		[_checkBtn addTarget:self action:@selector(checkBtnClick) forControlEvents:UIControlEventTouchUpInside];
+		[_checkBtn addTarget:self action:@selector(checkBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _checkBtn ;
 }

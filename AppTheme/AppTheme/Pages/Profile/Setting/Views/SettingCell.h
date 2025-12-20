@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
-	SettingCellRihgtStyleArrow,		//右侧为箭头
+	SettingCellRihgtStyleArrow,		  //右侧为箭头
 	SettingCellRihgtStyleSwitch,		//右侧为切换按钮
 	SettingCellRihgtStyleNone,			//右侧为空
 } SettingCellRihgtStyle;
