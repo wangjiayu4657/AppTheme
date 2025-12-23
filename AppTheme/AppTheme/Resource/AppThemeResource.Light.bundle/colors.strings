@@ -1,0 +1,8 @@
+/* 
+  colors.strings
+  Created by 王家玉 on 2025/12/20.
+*/
+
+"common_bg_color" = "#F2F2F2";
+"common_bg_content_color" = "#FFFFFF";
+"common_text_primary_color" = "#F8F8F8";

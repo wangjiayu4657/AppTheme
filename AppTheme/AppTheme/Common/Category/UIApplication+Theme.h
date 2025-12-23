@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIApplication (Theme)
 
 - (void)updateFontTheme;
-
+- (void)updateColorTheme;
 @end
 
 NS_ASSUME_NONNULL_END

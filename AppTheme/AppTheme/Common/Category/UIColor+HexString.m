@@ -51,8 +51,8 @@
     return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
 }
 /** 颜色转换 IOS中十六进制的颜色转换为UIColor*/
-+ (UIColor *)colorWithHexString:(NSString *)hexStr alpha:(CGFloat)alpha {
-    NSString *cString = [[hexStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
++ (UIColor *)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha {
+    NSString *cString = [[hexString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
     // String should be 6 or 8 characters
     if ([cString length] < 6) {

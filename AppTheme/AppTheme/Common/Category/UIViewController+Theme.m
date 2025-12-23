@@ -23,6 +23,17 @@
 	[self refreshFontsInView:self.view];
 }
 
+- (void)updateColorTheme {
+	if(self.presentingViewController) {
+		[self.presentedViewController updateColorTheme];
+	}
+	
+	[self refreshColorsInView:self.view];
+}
+
+
+#pragma mark - private
+
 - (void)refreshFontsInView:(UIView *)view {
 	for (UIView *subview in view.subviews) {
 		if ([subview isKindOfClass:[UILabel class]]) {
@@ -48,5 +59,21 @@
 	}
 }
 
-
+- (void)refreshColorsInView:(UIView *)view {
+	for (UIView *subview in view.subviews) {
+		if ([subview isKindOfClass:[UILabel class]]) {
+			UILabel *label = (UILabel *)subview;
+			label.textColor = UIColor.jy_textPrimaryColor;
+			label.backgroundColor = UIColor.jy_bgColor;
+		} else if ([subview isKindOfClass:[UIButton class]]) {
+			UIButton *btn = (UIButton *)subview;
+			[btn setTitleColor:UIColor.jy_textPrimaryColor forState:UIControlStateNormal];
+			btn.backgroundColor = UIColor.jy_bgColor;
+			[btn sizeToFit];
+		} else {
+			subview.backgroundColor = UIColor.jy_bgContentColor;
+			[self refreshFontsInView:subview];
+		}
+	}
+}
 @end

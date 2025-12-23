@@ -10,11 +10,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (HexString)
-+ (UIColor *) colorWithHexString: (NSString *) hexString;
+/** 颜色转换 IOS中十六进制的颜色转换为UIColor*/
++ (UIColor *)colorWithHexString:(NSString *)hexString;
++ (UIColor *)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha;
+
 + (UIImage *)createImageWithColor:(UIColor *)color;
 + (UIImage *)createImageWithColor:(UIColor *)color andSize:(CGSize)size;
-/** 颜色转换 IOS中十六进制的颜色转换为UIColor*/
-+ (UIColor *)colorWithHexString:(NSString *)hexStr alpha:(CGFloat)alpha;
+
 @end
 
 NS_ASSUME_NONNULL_END

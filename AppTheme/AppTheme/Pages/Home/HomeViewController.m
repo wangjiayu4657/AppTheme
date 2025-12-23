@@ -7,6 +7,7 @@
 
 #import "HomeViewController.h"
 #import "SettingViewController.h"
+#import "ThemeManager.h"
 
 @interface HomeViewController ()
 
@@ -17,7 +18,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"首页";
-	self.view.backgroundColor = UIColor.greenColor;
+	self.view.backgroundColor = UIColor.jy_bgContentColor;
 
 	[self jy_layoutSubviews];
 }
@@ -31,6 +32,9 @@
 
 #pragma mark - events
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+	[[ThemeManager manager] changeTheme:ThemeModeDark];
+}
 
 
 #pragma mark - getter

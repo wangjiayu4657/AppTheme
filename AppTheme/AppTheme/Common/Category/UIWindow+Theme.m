@@ -28,4 +28,27 @@
 	}
 }
 
+- (void)updateColorTheme {
+	[self.rootViewController updateColorTheme];
+	
+	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
+	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
+		if([nav isKindOfClass:[NavigationViewController class]]) {
+			for(UIViewController *controller in nav.viewControllers) {
+				[controller updateColorTheme];
+			}
+		}
+	}
+}
+
+//- (void)updateFontTheme {
+//	UIView *rootCtrlView = self.rootViewController.view;
+//	[self.rootViewController updateColorTheme];
+//}
+//
+//- (void)updateColorTheme {
+//	UIView *rootCtrlView = self.rootViewController.view;
+//	[self.rootViewController updateFontTheme];
+//}
+
 @end

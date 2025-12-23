@@ -23,7 +23,6 @@
 	[super viewDidLoad];
 	
 	[self initUI];
-//	[self initNavigationBarAppearance];
 	[self addNotification];
 }
 
@@ -61,7 +60,7 @@
 #pragma mark - private
 
 - (void)initUI {
-	self.view.backgroundColor = UIColor.whiteColor;
+	self.view.backgroundColor = UIColor.jy_bgContentColor;
 
 	UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:self.backBtn];
 	self.navigationItem.leftBarButtonItem = backItem;

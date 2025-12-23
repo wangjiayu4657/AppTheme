@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 
 
+static NSString * const kThemeDidChangeNotification = @"kThemeDidChangeNotification";
 static NSString * const kFontSizeDidChangeNotification = @"kFontSizeDidChangeNotification";
 
 #endif /* Header_h */
