@@ -36,7 +36,7 @@
 #pragma mark - 设置 UI
 
 - (void)jy_layoutSubviews {
-	self.backgroundColor = UIColor.whiteColor;
+	self.backgroundColor = UIColor.jy_bgContentColor;
 	
 	[self addSubview:self.bgImgView];
 	[self.bgImgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -200,7 +200,7 @@
 - (UILabel *)titleLb {
 	if (!_titleLb) {
 		_titleLb = [[UILabel alloc] init];
-		_titleLb.textColor = [UIColor whiteColor];
+		_titleLb.textColor = UIColor.jy_textPrimaryColor;
 		_titleLb.font = [UIFont boldSystemFontOfSize:18];
 	}
 	return _titleLb;
@@ -211,7 +211,7 @@
 		_backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 		_backBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
 		[_backBtn setImage:[UIImage imageNamed:@"left_arrow_white"] forState:UIControlStateNormal];
-		[_backBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		[_backBtn setTitleColor:UIColor.jy_textPrimaryColor forState:UIControlStateNormal];
 		[_backBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _backBtn ;
@@ -221,7 +221,7 @@
 	if (!_moreBtn) {
 		_moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 		_moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-		[_moreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		[_moreBtn setTitleColor:UIColor.jy_textPrimaryColor forState:UIControlStateNormal];
 		[_moreBtn addTarget:self action:@selector(moreBtnClick) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _moreBtn ;

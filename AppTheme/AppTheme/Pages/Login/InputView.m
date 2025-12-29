@@ -111,7 +111,7 @@
 	if (!_leadingLb) {
 		_leadingLb = [[UILabel alloc] init];
 		_leadingLb.text = @"+86";
-		_leadingLb.textColor = [UIColor blackColor];
+		_leadingLb.textColor = UIColor.jy_textPrimaryColor;
 		_leadingLb.font = [UIFont systemFontOfSize:14];
 		_leadingLb.textAlignment = NSTextAlignmentCenter;
 	}
@@ -122,7 +122,7 @@
 	if (!_textField) {
 		_textField = [[UITextField alloc] init];
 		_textField.font = [UIFont systemFontOfSize:14];
-		_textField.textColor = [UIColor colorWithHexString:@"#333333"];
+		_textField.textColor = UIColor.jy_textPrimaryColor;
 	}
 	return _textField;
 }
@@ -143,7 +143,7 @@
 	if (!_verticalLine) {
 		_verticalLine = [[UIView alloc] init];
 		_verticalLine.hidden = YES;
-		_verticalLine.backgroundColor = [UIColor colorWithHexString:@"#F7F7F7"];
+		_verticalLine.backgroundColor = UIColor.jy_dividerCcolor;
 	}
 	return _verticalLine;
 }
@@ -151,7 +151,7 @@
 - (UIView *)horizontalLine {
 	if (!_horizontalLine) {
 		_horizontalLine = [[UIView alloc] init];
-		_horizontalLine.backgroundColor = [UIColor colorWithHexString:@"#F7F7F7"];
+		_horizontalLine.backgroundColor = UIColor.jy_dividerCcolor;
 	}
 	return _horizontalLine;
 }

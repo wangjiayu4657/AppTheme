@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.view.backgroundColor = [UIColor whiteColor];
+	self.view.backgroundColor = UIColor.jy_bgContentColor;
 	[self jy_layoutSubviews];
 }
 

@@ -33,7 +33,7 @@
 #pragma mark - 设置 UI
 
 - (void)jy_layoutSubviews {
-	self.backgroundColor = UIColor.whiteColor;
+	self.backgroundColor = UIColor.jy_bgContentColor;
 	
 	[self addSubview:self.titleLb];
 	[self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -148,7 +148,7 @@
 	if (!_titleLb) {
 		_titleLb = [[UILabel alloc] init];
 		_titleLb.text = @"手机号注册/登录";
-		_titleLb.textColor = [UIColor blackColor];
+		_titleLb.textColor = UIColor.jy_textPrimaryColor;
 		_titleLb.font = [UIFont boldSystemFontOfSize:18];
 	}
 	return _titleLb;
@@ -192,7 +192,7 @@
 		_textView.editable = NO;
 		_textView.scrollEnabled = NO;
 		_textView.font = [UIFont systemFontOfSize:12];
-		_textView.backgroundColor = UIColor.whiteColor;
+		_textView.backgroundColor = UIColor.jy_bgContentColor;
 	}
 	return _textView;
 }
