@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 //#F8F8F8 - #333333
 @property(class, nonatomic, readonly) UIColor *jy_textPrimaryColor;
 
+//#E7E7E7 - #0F1319
+@property(class, nonatomic, readonly) UIColor *jy_dividerCcolor;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -34,7 +34,7 @@
 #pragma mark - 设置 UI
 
 - (void)jy_layoutSubviews {
-	self.backgroundColor = UIColor.whiteColor;
+	self.backgroundColor = UIColor.jy_bgContentColor;
 	
 	[self addSubview:self.slider];
 	[self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,7 +108,7 @@
 	if (!_smallLb) {
 		_smallLb = [[UILabel alloc] init];
 		_smallLb.text = @"A";
-		_smallLb.textColor = [UIColor blackColor];
+		_smallLb.textColor = UIColor.jy_textPrimaryColor;
 		_smallLb.font = [UIFont systemFontOfSize:12];
 	}
 	return _smallLb;
@@ -118,7 +118,7 @@
 	if (!_standardLb) {
 		_standardLb = [[UILabel alloc] init];
 		_standardLb.text = @"标准";
-		_standardLb.textColor = [UIColor blackColor];
+		_standardLb.textColor = UIColor.jy_textPrimaryColor;
 		_standardLb.font = [UIFont systemFontOfSize:14];
 	}
 	return _standardLb;
@@ -128,7 +128,7 @@
 	if (!_largerLb) {
 		_largerLb = [[UILabel alloc] init];
 		_largerLb.text = @"A";
-		_largerLb.textColor = [UIColor blackColor];
+		_largerLb.textColor = UIColor.jy_textPrimaryColor;
 		_largerLb.font = [UIFont systemFontOfSize:18];
 	}
 	return _largerLb;

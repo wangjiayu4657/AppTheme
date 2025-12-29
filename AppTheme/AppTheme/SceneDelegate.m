@@ -28,7 +28,7 @@
 	self.window.rootViewController = tabCtrl;
 	[self.window makeKeyAndVisible];
 	
-	[[ThemeManager manager] loadThemeSource:@[@(ThemeModeLight), @(ThemeModeDark)]];
+	[[ThemeManager manager] changeTheme:ThemeModeLight];
 	
 	// 处理深链接
 	if (connectionOptions.URLContexts.count > 0) {

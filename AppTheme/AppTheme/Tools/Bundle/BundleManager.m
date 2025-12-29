@@ -230,10 +230,7 @@ static BOOL _debuggable = NO;
 		NSLog(@"[BundleManager] Need UIColor for %@ in %@, but got %@", name, bundleName, NSStringFromClass(color.class));
 		color = nil;
 	}
-	
-	NSString *bundleName1 = makeBundleName(bundleName, overrideSuffix);
-	NSLog(@"bundleName1 == %@",bundleName1);
-	
+
 	if(!color) {
 		NSString *value = nil;
 		if(overrideSuffix.length > 0) {

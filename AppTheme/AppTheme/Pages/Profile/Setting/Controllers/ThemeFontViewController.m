@@ -131,13 +131,13 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	UIView *headerView = [[UIView alloc] init];
-	headerView.backgroundColor = UIColor.clearColor;
+//	headerView.backgroundColor = UIColor.clearColor;
 	return headerView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
 	UIView *footerView = [[UIView alloc] init];
-	footerView.backgroundColor = UIColor.clearColor;
+//	footerView.backgroundColor = UIColor.clearColor;
 	return footerView;
 }
 
@@ -174,7 +174,7 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 		_tableView.estimatedRowHeight = 34;
 		_tableView.rowHeight = UITableViewAutomaticDimension;
 		_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-		_tableView.backgroundColor = [UIColor colorWithHexString:@"#F7F7F7"];
+		_tableView.backgroundColor = UIColor.jy_bgColor;
 		[_tableView registerClass:[FontSenderCell class] forCellReuseIdentifier:kFontSenderCellID];
 		[_tableView registerClass:[FontReceiverCell class] forCellReuseIdentifier:kFontReceiverCellID];
 	}

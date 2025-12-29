@@ -37,7 +37,7 @@ static NSString * const kSettingCellID = @"kSettingCellID";
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"设置";
-	self.view.backgroundColor = UIColor.systemTealColor;
+	self.view.backgroundColor = UIColor.jy_bgContentColor;
 	
 	[self initDataSource];
 	[self jy_layoutSubviews];
@@ -146,7 +146,6 @@ static NSString * const kSettingCellID = @"kSettingCellID";
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
 	UIView *footerView = [[UIView alloc] init];
-	footerView.backgroundColor = [UIColor colorWithHexString:@"#F7F7F7"];
 	return footerView;
 }
 
@@ -252,7 +251,7 @@ static NSString * const kSettingCellID = @"kSettingCellID";
 		_tableView.estimatedRowHeight = 44;
 		_tableView.rowHeight = UITableViewAutomaticDimension;
 		_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-		_tableView.backgroundColor = [UIColor colorWithHexString:@"#F7F7F7"];
+		_tableView.backgroundColor = UIColor.jy_bgColor;
 		[_tableView registerClass:[SettingCell class] forCellReuseIdentifier:kSettingCellID];
 	}
 	return _tableView;

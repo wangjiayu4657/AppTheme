@@ -19,8 +19,10 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
+	self.view.backgroundColor = UIColor.jy_bgContentColor;
+	
 	[self jy_layoutSubviews];
+	[self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

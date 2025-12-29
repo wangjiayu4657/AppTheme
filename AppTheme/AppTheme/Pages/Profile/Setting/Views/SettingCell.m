@@ -32,6 +32,8 @@
 #pragma mark - 设置 UI
 
 - (void)jy_layoutSubviews {
+	self.backgroundColor = UIColor.jy_bgContentColor;
+	
 	[self.contentView addSubview:self.titleLb];
 	[self.titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.left.mas_equalTo(15);
@@ -56,7 +58,7 @@
 		make.left.mas_equalTo(15);
 		make.bottom.equalTo(self.contentView.mas_bottom);
 		make.right.mas_equalTo(-15);
-		make.height.mas_equalTo(1);
+		make.height.mas_equalTo(0.5);
 	}];
 }
 
@@ -93,7 +95,7 @@
 	if (!_titleLb) {
 		_titleLb = [[UILabel alloc] init];
 		_titleLb.text = @"--";
-		_titleLb.textColor = [UIColor blackColor];
+		_titleLb.textColor = UIColor.jy_textPrimaryColor;
 		_titleLb.font = [UIFont systemFontOfSize:16];
 	}
 	return _titleLb;
@@ -120,7 +122,7 @@
 - (UIView *)lineView {
 	if (!_lineView) {
 		_lineView = [[UIView alloc] init];
-		_lineView.backgroundColor = [UIColor colorWithHexString:@"#F7F7F7"];
+		_lineView.backgroundColor = UIColor.jy_dividerCcolor;
 	}
 	return _lineView;
 }

@@ -11,8 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (Theme)
 
-- (void)updateFontTheme;
-- (void)updateColorTheme;
+@property(nonatomic, assign) BOOL theme_isInited;
+@property(nonatomic, copy) NSString *theme_resourceSuffix;
+
+- (void)updateControllerFontTheme;
+- (void)updateControllerColorTheme;
 
 
 @end

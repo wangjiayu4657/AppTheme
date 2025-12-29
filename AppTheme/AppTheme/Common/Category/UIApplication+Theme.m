@@ -15,11 +15,11 @@
 		NSSet *set = self.connectedScenes;
 		UIWindowScene *windowScene = [set anyObject];
 		for (UIWindow *window in windowScene.windows) {
-			[window updateFontTheme];
+			[window updateWindowFontTheme];
 		}
 	} else if(@available(iOS 11.0, *)) {
 		for (UIWindow *window in self.windows) {
-			[window updateFontTheme];
+			[window updateWindowFontTheme];
 		}
 	}
 }
@@ -29,11 +29,11 @@
 		NSSet *set = self.connectedScenes;
 		UIWindowScene *windowScene = [set anyObject];
 		for (UIWindow *window in windowScene.windows) {
-			[window updateColorTheme];
+			[window updateWindowColorTheme];
 		}
 	} else if(@available(iOS 11.0, *)) {
 		for (UIWindow *window in self.windows) {
-			[window updateColorTheme];
+			[window updateWindowColorTheme];
 		}
 	}
 }

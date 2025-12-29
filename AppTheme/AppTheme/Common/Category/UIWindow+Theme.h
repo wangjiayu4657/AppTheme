@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIWindow (Theme)
 
-- (void)updateFontTheme;
-- (void)updateColorTheme;
+- (void)updateWindowFontTheme;
+- (void)updateWindowColorTheme;
 
 @end
 

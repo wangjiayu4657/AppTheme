@@ -3,6 +3,7 @@
   Created by 王家玉 on 2025/12/20.
 */
 
-"conmmon_bg_color" = "#0F1319";
+"common_bg_color" = "#0F1319";
 "common_bg_content_color" = "#222531";
-"common_text_primary_color" = "#333333";
+"common_text_primary_color" = "#F8F8F8";
+"common_divider_color" = "#0F1319";

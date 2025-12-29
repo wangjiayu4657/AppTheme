@@ -47,9 +47,8 @@
 
 - (UIColor *)resolvedColor {
 	NSString *suffix = [BundleManager overrideSuffix];
-	NSLog(@"suffix == %@",suffix);
 	
-	if(!_resourceSuffix && ![suffix isEqualToString:_resourceSuffix]) {
+	if(![suffix isEqualToString:_resourceSuffix]) {
 		_resourceSuffix = [suffix copy];
 		
 		UIColor *color = [BundleManager colorForName:_colorName inBundle:_moduleName];

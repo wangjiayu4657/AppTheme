@@ -5,4 +5,5 @@
 
 "common_bg_color" = "#F2F2F2";
 "common_bg_content_color" = "#FFFFFF";
-"common_text_primary_color" = "#F8F8F8";
+"common_text_primary_color" = "#333333";
+"common_divider_color" = "#E7E7E7";

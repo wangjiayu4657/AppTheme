@@ -16,7 +16,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"发现";
-	self.view.backgroundColor = UIColor.orangeColor;
+	self.view.backgroundColor = UIColor.jy_bgContentColor;
 	
 	
 }

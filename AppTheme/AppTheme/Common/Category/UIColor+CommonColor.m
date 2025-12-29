@@ -20,7 +20,7 @@ return color;
 @implementation UIColor (CommonColor)
 
 + (UIColor *)jy_bgColor {
-	_COLOR_FOR_ONCE(@"conmmon_bg_color");
+	_COLOR_FOR_ONCE(@"common_bg_color");
 }
 
 + (UIColor *)jy_bgContentColor {
@@ -29,6 +29,10 @@ return color;
 
 + (UIColor *)jy_textPrimaryColor {
 	_COLOR_FOR_ONCE(@"common_text_primary_color");
+}
+
++ (UIColor *)jy_dividerCcolor {
+	_COLOR_FOR_ONCE(@"common_divider_color")
 }
 
 

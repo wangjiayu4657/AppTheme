@@ -15,40 +15,72 @@
 
 @implementation UIWindow (Theme)
 
-- (void)updateFontTheme {
-	[self.rootViewController updateFontTheme];
-	
-	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
-	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
-		if([nav isKindOfClass:[NavigationViewController class]]) {
-			for(UIViewController *controller in nav.viewControllers) {
-				[controller updateFontTheme];
-			}
-		}
-	}
-}
-
-- (void)updateColorTheme {
-	[self.rootViewController updateColorTheme];
-	
-	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
-	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
-		if([nav isKindOfClass:[NavigationViewController class]]) {
-			for(UIViewController *controller in nav.viewControllers) {
-				[controller updateColorTheme];
-			}
-		}
-	}
-}
-
 //- (void)updateFontTheme {
-//	UIView *rootCtrlView = self.rootViewController.view;
-//	[self.rootViewController updateColorTheme];
+//	[self.rootViewController updateFontTheme];
+//	
+//	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
+//	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
+//		if([nav isKindOfClass:[NavigationViewController class]]) {
+//			for(UIViewController *controller in nav.viewControllers) {
+//				[controller updateFontTheme];
+//			}
+//		}
+//	}
 //}
 //
 //- (void)updateColorTheme {
-//	UIView *rootCtrlView = self.rootViewController.view;
-//	[self.rootViewController updateFontTheme];
+//	[self.rootViewController updateColorTheme];
+//	
+//	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
+//	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
+//		if([nav isKindOfClass:[NavigationViewController class]]) {
+//			for(UIViewController *controller in nav.viewControllers) {
+//				[controller updateColorTheme];
+//			}
+//		}
+//	}
 //}
+
+- (void)updateWindowFontTheme {
+	UIView *snapshot = [self snapshotViewAfterScreenUpdates:NO];
+	[self.rootViewController updateControllerFontTheme];
+	
+	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
+	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
+		if([nav isKindOfClass:[NavigationViewController class]]) {
+			for(UIViewController *controller in nav.viewControllers) {
+				[controller updateControllerFontTheme];
+			}
+		}
+	}
+	
+	[self addSubview:snapshot];
+	[UIView animateWithDuration:0.25 animations:^{
+		snapshot.alpha = 0;
+	} completion:^(BOOL finished) {
+		[snapshot removeFromSuperview];
+	}];
+}
+
+- (void)updateWindowColorTheme {
+	UIView *snapshot = [self snapshotViewAfterScreenUpdates:NO];
+	[self.rootViewController updateControllerColorTheme];
+	
+	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
+	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
+		if([nav isKindOfClass:[NavigationViewController class]]) {
+			for(UIViewController *controller in nav.viewControllers) {
+				[controller updateControllerColorTheme];
+			}
+		}
+	}
+	
+	[self addSubview:snapshot];
+	[UIView animateWithDuration:0.25 animations:^{
+		snapshot.alpha = 0;
+	} completion:^(BOOL finished) {
+		[snapshot removeFromSuperview];
+	}];
+}
 
 @end

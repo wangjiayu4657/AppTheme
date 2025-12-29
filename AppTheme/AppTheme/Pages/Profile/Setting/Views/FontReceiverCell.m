@@ -73,7 +73,7 @@
 		_contentLb = [[UILabel alloc] init];
 		_contentLb.text = @"内容";
 		_contentLb.numberOfLines = 0;
-		_contentLb.textColor = [UIColor blackColor];
+		_contentLb.textColor = UIColor.jy_textPrimaryColor;
 		_contentLb.font = [UIFont systemFontOfSize:16];
 	}
 	return _contentLb;

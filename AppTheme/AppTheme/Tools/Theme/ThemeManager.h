@@ -20,12 +20,8 @@ typedef enum : NSUInteger {
 
 @property(nonatomic, assign) ThemeMode themeMode;
 
-///加载初始化主题模式名称
-- (void)loadThemeSource:(NSArray *)source;
-
 ///切换主题模式
 - (void)changeTheme:(ThemeMode)theme;
-//- (BOOL)changeTheme:(ThemeMode)theme;
 
 @end
 

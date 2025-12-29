@@ -16,7 +16,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"市场";
-	self.view.backgroundColor = UIColor.blueColor;
+	self.view.backgroundColor = UIColor.jy_bgContentColor;
 	
 }
 @end

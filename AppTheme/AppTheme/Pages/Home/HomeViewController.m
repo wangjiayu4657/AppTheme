@@ -10,7 +10,7 @@
 #import "ThemeManager.h"
 
 @interface HomeViewController ()
-
+@property(nonatomic, assign) ThemeMode themeMode;
 @end
 
 @implementation HomeViewController
@@ -33,7 +33,12 @@
 #pragma mark - events
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-	[[ThemeManager manager] changeTheme:ThemeModeDark];
+	if(self.themeMode == ThemeModeLight) {
+		self.themeMode = ThemeModeDark;
+	} else if(self.themeMode == ThemeModeDark) {
+		self.themeMode = ThemeModeLight;
+	}
+	[[ThemeManager manager] changeTheme:self.themeMode];
 }
 
 
