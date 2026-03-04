@@ -7,39 +7,12 @@
 
 #import "UIWindow+Theme.h"
 #import "UIViewController+Theme.h"
-#import "FontManager.h"
 #import "UIViewController+RouteStack.h"
 #import "TabBarController.h"
 #import "ThemeFontViewController.h"
 #import "NavigationViewController.h"
 
 @implementation UIWindow (Theme)
-
-//- (void)updateFontTheme {
-//	[self.rootViewController updateFontTheme];
-//	
-//	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
-//	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
-//		if([nav isKindOfClass:[NavigationViewController class]]) {
-//			for(UIViewController *controller in nav.viewControllers) {
-//				[controller updateFontTheme];
-//			}
-//		}
-//	}
-//}
-//
-//- (void)updateColorTheme {
-//	[self.rootViewController updateColorTheme];
-//	
-//	TabBarController *tabCtrl = (TabBarController *)self.rootViewController;
-//	for (NavigationViewController *nav in tabCtrl.childViewControllers) {
-//		if([nav isKindOfClass:[NavigationViewController class]]) {
-//			for(UIViewController *controller in nav.viewControllers) {
-//				[controller updateColorTheme];
-//			}
-//		}
-//	}
-//}
 
 - (void)updateWindowFontTheme {
 	UIView *snapshot = [self snapshotViewAfterScreenUpdates:NO];

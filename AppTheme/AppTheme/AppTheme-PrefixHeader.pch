@@ -17,5 +17,6 @@
 #import "UIFont+Scale.h"
 #import "ThemeConst.h"
 #import "UIColor+CommonColor.h"
+#import "ThemeManager.h"
 
 #endif /* PrefixHeader_pch */

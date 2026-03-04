@@ -6,22 +6,31 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ThemeSkin/SkinHelper.h"
+#import "ThemeFont/FontHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef enum : NSUInteger {
-	ThemeModeLight,		//默认模式
-	ThemeModeDark,		//深色模式
-} ThemeMode;
 
 @interface ThemeManager : NSObject
 
 + (instancetype)manager;
 
-@property(nonatomic, assign) ThemeMode themeMode;
+//字体缩放系数
+@property(nonatomic, readonly, assign) CGFloat fontScale;
+//当前缩放类型
+@property(nonatomic, readonly, assign) FontType currentFontType;
+
+@property(nonatomic, readonly, assign) SkinType skinThemeMode;
+
 
 ///切换主题模式
-- (void)changeTheme:(ThemeMode)theme;
+/// - Parameter skinTheme: 皮肤主题
+- (void)updateSkinType:(SkinType)skinType;
+
+/// 更新字体大小
+/// - Parameter FontScale: 字体大小类型
+/// - Parameter isRefresh: 是否需要立即刷新
+- (void)updateFontType:(FontType)fontType isRefresh:(BOOL)isRefresh;
 
 @end
 

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75BC73472EFA391C0056FBA3 /* Pods_AppTheme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134C60C6D94112EDE7F4D30F /* Pods_AppTheme.framework */; };
 		75BC73482EFA391C0056FBA3 /* Pods_AppTheme.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 134C60C6D94112EDE7F4D30F /* Pods_AppTheme.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BD1C652273D8A2F011BDCBA5 /* Pods_AppTheme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3830773530313213A97BD93 /* Pods_AppTheme.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +29,7 @@
 		0FE16BEA6298BEA53FF2AAB1 /* Pods-AppTheme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTheme.release.xcconfig"; path = "Target Support Files/Pods-AppTheme/Pods-AppTheme.release.xcconfig"; sourceTree = "<group>"; };
 		134C60C6D94112EDE7F4D30F /* Pods_AppTheme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppTheme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752F719C2EDD3EA000A20CF1 /* AppTheme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppTheme.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3830773530313213A97BD93 /* Pods_AppTheme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppTheme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61C393AC08AF0243ED99E42 /* Pods-AppTheme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppTheme.debug.xcconfig"; path = "Target Support Files/Pods-AppTheme/Pods-AppTheme.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75BC73472EFA391C0056FBA3 /* Pods_AppTheme.framework in Frameworks */,
+				BD1C652273D8A2F011BDCBA5 /* Pods_AppTheme.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +82,7 @@
 				752F719D2EDD3EA000A20CF1 /* Products */,
 				4D59B26592D56D5E1218F97A /* Pods */,
 				B3F1BDA2B448E1EB7C7F8028 /* Frameworks */,
+				75D270582F037275002D3856 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,10 +94,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B3F1BDA2B448E1EB7C7F8028 /* Frameworks */ = {
+		75D270582F037275002D3856 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				134C60C6D94112EDE7F4D30F /* Pods_AppTheme.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		B3F1BDA2B448E1EB7C7F8028 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3830773530313213A97BD93 /* Pods_AppTheme.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

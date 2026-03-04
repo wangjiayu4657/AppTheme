@@ -12,8 +12,10 @@
 
 
 @interface ThemeManager()
-
+@property(nonatomic, strong) SkinHelper *skinHelper;
+@property(nonatomic, strong) FontHelper *fontHelper;
 @end
+
 
 @implementation ThemeManager
 
@@ -22,24 +24,48 @@
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		manager = [[ThemeManager alloc] init];
-		manager.themeMode = ThemeModeLight;
 	});
 	return manager;
 }
 
-- (void)changeTheme:(ThemeMode)theme {
-	self.themeMode = theme;
-	NSString *themeName = self.themeMode == ThemeModeDark ? @"Dark" : @"Light";
-	[BundleManager setOverrideSuffix:themeName];
-	
-	[[UIApplication sharedApplication] updateColorTheme];
-	[self themeDidChangedNotification];
+
+#pragma mark - public
+
+- (void)updateSkinType:(SkinType)skinType {
+	[self.skinHelper updateSkinType:skinType];
 }
 
-#pragma mark - events
+- (void)updateFontType:(FontType)fontType isRefresh:(BOOL)isRefresh{
+	[self.fontHelper updateFontType:fontType isRefresh:isRefresh];
+}
 
-- (void)themeDidChangedNotification {
-	[[NSNotificationCenter defaultCenter] postNotificationName:kThemeDidChangeNotification object:nil];
+
+#pragma mark - getter
+
+- (CGFloat)fontScale {
+	return self.fontHelper.fontScale;
+}
+
+- (FontType)currentFontType {
+	return self.fontHelper.currentFontType;
+}
+
+- (SkinType)skinThemeMode {
+	return self.skinHelper.skinType;
+}
+
+- (SkinHelper *)skinHelper {
+	if (!_skinHelper) {
+		_skinHelper = [[SkinHelper alloc] init];
+	}
+	return _skinHelper;
+}
+
+- (FontHelper *)fontHelper {
+	if (!_fontHelper) {
+		_fontHelper = [[FontHelper alloc] init];
+	}
+	return _fontHelper;
 }
 
 @end

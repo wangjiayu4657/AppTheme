@@ -10,7 +10,6 @@
 #import "FontSenderCell.h"
 #import "FontReceiverCell.h"
 #import "SliderView.h"
-#import "FontManager.h"
 
 
 static NSString * const kFontSenderCellID = @"kFontSenderCellID";
@@ -23,7 +22,6 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 @property(nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *sources;
 
 @property(nonatomic, assign) FontType fontType;
-@property(nonatomic, assign) CGFloat originalScale;
 
 @end
 
@@ -36,7 +34,7 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 	self.title = @"设置字体大小";
 	self.backBtnTitle = @"取消";
 	self.moreBtnTitle = @"完成";
-	self.originalScale = [FontManager sharedManager].fontScale;
+	self.fontType = [ThemeManager manager].currentFontType;
 	
 	[self initData];
 	[self jy_layoutSubviews];
@@ -131,13 +129,11 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	UIView *headerView = [[UIView alloc] init];
-//	headerView.backgroundColor = UIColor.clearColor;
 	return headerView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
 	UIView *footerView = [[UIView alloc] init];
-//	footerView.backgroundColor = UIColor.clearColor;
 	return footerView;
 }
 
@@ -145,8 +141,7 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 #pragma mark - SliderViewDelegate
 
 - (void)sliderView:(SliderView *)sliderView updateFontScale:(CGFloat)fontScale FontType:(FontType)fontType {
-	self.fontType = fontType;
-	[FontManager sharedManager].fontScale = fontScale;
+	[[ThemeManager manager] updateFontType:fontType isRefresh:NO];
 	[self.tableView reloadData];
 }
 
@@ -154,12 +149,12 @@ static NSString * const kFontReceiverCellID = @"kFontReceiverCellID";
 #pragma mark - events
 
 - (void)backBtnClick {
-	[FontManager sharedManager].fontScale = self.originalScale;
+	[[ThemeManager manager] updateFontType:self.fontType isRefresh:NO];
 	[super backBtnClick];
 }
 
 - (void)moreBtnClick {
-	[[FontManager sharedManager] updateFontType:self.fontType];
+	[[ThemeManager manager] updateFontType:self.fontType isRefresh:YES];
 	[self.navigationController popToRootViewControllerAnimated:YES];
 }
 

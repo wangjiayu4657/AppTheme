@@ -7,10 +7,11 @@
 
 #import "HomeViewController.h"
 #import "SettingViewController.h"
-#import "ThemeManager.h"
+#import "Aspects.h"
+
 
 @interface HomeViewController ()
-@property(nonatomic, assign) ThemeMode themeMode;
+@property(nonatomic, assign) SkinType skinType;
 @end
 
 @implementation HomeViewController
@@ -26,19 +27,24 @@
 #pragma mark - 设置 UI
 
 - (void)jy_layoutSubviews {
-	
+//	[self aspect_hookSelector:@selector(viewWillAppear:)
+//								withOptions:AspectPositionAfter
+//								 usingBlock:^(id<AspectInfo> aspectInfo,BOOL animation){
+//		NSLog(@"================");
+//	} error:nil];
 }
 
 
 #pragma mark - events
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-	if(self.themeMode == ThemeModeLight) {
-		self.themeMode = ThemeModeDark;
-	} else if(self.themeMode == ThemeModeDark) {
-		self.themeMode = ThemeModeLight;
+	if(self.skinType == SkinTypeLight) {
+		self.skinType = SkinTypeDark;
+	} else if(self.skinType == SkinTypeDark) {
+		self.skinType = SkinTypeLight;
 	}
-	[[ThemeManager manager] changeTheme:self.themeMode];
+	
+	[[ThemeManager manager] updateSkinType:self.skinType];
 }
 
 

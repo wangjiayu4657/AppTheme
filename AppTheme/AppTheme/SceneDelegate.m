@@ -7,7 +7,7 @@
 
 #import "SceneDelegate.h"
 #import "TabBarController.h"
-#import "ThemeManager.h"
+
 
 @interface SceneDelegate ()
 
@@ -28,7 +28,7 @@
 	self.window.rootViewController = tabCtrl;
 	[self.window makeKeyAndVisible];
 	
-	[[ThemeManager manager] changeTheme:ThemeModeLight];
+	[[ThemeManager manager] updateSkinType:SkinTypeLight];
 	
 	// 处理深链接
 	if (connectionOptions.URLContexts.count > 0) {

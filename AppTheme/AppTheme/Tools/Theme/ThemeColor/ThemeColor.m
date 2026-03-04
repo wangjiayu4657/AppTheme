@@ -37,6 +37,47 @@
 	return [[ThemeColor alloc] initWithMoudleName:moduleName colorName:colorName];
 }
 
+
+#pragma mark - NSProxy
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
+	return [self.resolvedColor methodSignatureForSelector:sel];
+}
+
+- (void)forwardInvocation:(NSInvocation *)invocation {
+	[invocation invokeWithTarget:self.resolvedColor];
+}
+
+
+#pragma mark - Override
+
+- (BOOL)isKindOfClass:(Class)aClass {
+	if(aClass == ThemeColor.class) {
+		return YES;
+	}
+	
+	return [self.resolvedColor isKindOfClass:aClass];
+}
+
+- (id)copy {
+	return [self copyWithZone:nil];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+	ThemeColor *themeColor = [ThemeColor colorWithMoudleName:_moduleName colorName:_colorName];
+	themeColor.alpha = _alpha;
+	return themeColor;
+}
+
+- (UIColor *)colorWithAlphaComponent:(CGFloat)alpha {
+	ThemeColor *themeColor = [self copy];
+	themeColor.alpha = 255.0 * _alpha;
+	return (UIColor *)themeColor;
+}
+
+
+#pragma mark - getter
+
 - (NSString *)colorName {
 	return _colorName;
 }
@@ -62,50 +103,6 @@
 	}
 	
 	return _resolvedColor;
-}
-
-
-#pragma mark - NSProxy
-
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
-	return [self.resolvedColor methodSignatureForSelector:sel];
-}
-
-- (void)forwardInvocation:(NSInvocation *)invocation {
-	[invocation invokeWithTarget:self.resolvedColor];
-}
-
-
-#pragma mark - NSObject
-
-- (BOOL)isKindOfClass:(Class)aClass {
-	if(aClass == ThemeColor.class) {
-		return YES;
-	}
-	
-	return [self.resolvedColor isKindOfClass:aClass];
-}
-
-
-#pragma mark - NSCopying
-
-- (id)copy {
-	return [self copyWithZone:nil];
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-	ThemeColor *themeColor = [ThemeColor colorWithMoudleName:_moduleName colorName:_colorName];
-	themeColor.alpha = _alpha;
-	return themeColor;
-}
-
-
-#pragma mark - UIColor
-
-- (UIColor *)colorWithAlphaComponent:(CGFloat)alpha {
-	ThemeColor *themeColor = [self copy];
-	themeColor.alpha = 255.0 * _alpha;
-	return (UIColor *)themeColor;
 }
 
 @end

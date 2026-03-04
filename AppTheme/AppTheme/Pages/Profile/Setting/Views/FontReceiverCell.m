@@ -71,7 +71,7 @@
 - (UILabel *)contentLb {
 	if (!_contentLb) {
 		_contentLb = [[UILabel alloc] init];
-		_contentLb.text = @"内容";
+		_contentLb.text = @"--";
 		_contentLb.numberOfLines = 0;
 		_contentLb.textColor = UIColor.jy_textPrimaryColor;
 		_contentLb.font = [UIFont systemFontOfSize:16];

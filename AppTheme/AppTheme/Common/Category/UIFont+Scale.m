@@ -7,7 +7,6 @@
 
 #import "UIFont+Scale.h"
 #import "ThemeCommon.h"
-#import "FontManager.h"
 
 
 @implementation UIFont (Scale)
@@ -35,14 +34,14 @@
 #pragma mark - private
 
 + (UIFont *)jy_systemFontOfSize:(CGFloat)size {
-	FontManager *manager = [FontManager sharedManager];
+	ThemeManager *manager = [ThemeManager manager];
 	UIFont *font = [self jy_systemFontOfSize:size * manager.fontScale];
 	font.originalSize = size;
 	return font;
 }
 
 + (UIFont *)jy_boldSystemFontOfSize:(CGFloat)size {
-	FontManager *manager = [FontManager sharedManager];
+	ThemeManager *manager = [ThemeManager manager];
 	UIFont *font = [self jy_boldSystemFontOfSize:size * manager.fontScale];
 	font.originalSize = size;
 	return font;

@@ -175,8 +175,8 @@
 		item.selected = i == 0; //默认选中第一个
 		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemTapped:)];
 		[item addGestureRecognizer:tap];
-		[self addSubview:item];
 		[items addObject:item];
+		[self addSubview:item];
 	}
 	
 	self.items = [items copy];

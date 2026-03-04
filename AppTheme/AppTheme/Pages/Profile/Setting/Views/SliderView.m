@@ -7,8 +7,6 @@
 
 #import "SliderView.h"
 #import "StepSlider.h"
-#import "UIView+Theme.h"
-#import "FontManager.h"
 
 @interface SliderView()<StepSliderDelegate>
 
@@ -140,7 +138,7 @@
 		_slider.stepValue = 5;
 		_slider.minimumValue = 95;
 		_slider.maximumValue = 125;
-		_slider.value = [FontManager sharedManager].fontScale * 100;
+		_slider.value = [ThemeManager manager].fontScale * 100;
 		_slider.delegate = self;
 	}
 	return _slider;

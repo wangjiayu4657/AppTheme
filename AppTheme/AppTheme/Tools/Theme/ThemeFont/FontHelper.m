@@ -1,67 +1,63 @@
 //
-//  FontManager.m
-//  FontScale
+//  FontHelper.m
+//  AppTheme
 //
-//  Created by 王家玉 on 2025/11/26.
+//  Created by 王家玉 on 2026/1/16.
 //
 
-#import "FontManager.h"
+#import "FontHelper.h"
 #import "ThemeConst.h"
 #import "NotificationNameConst.h"
 #import "UIApplication+Theme.h"
 
 
-@interface FontManager()
+@interface FontHelper()
 
 @property (nonatomic, strong) NSDictionary *fontTypeMap;
 
 @end
 
-
-@implementation FontManager
-
-+ (instancetype)sharedManager {
-  static FontManager *instance = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    instance = [[FontManager alloc] init];
-  });
-  return instance;
-}
+@implementation FontHelper
 
 - (instancetype)init {
-  if (self = [super init]) {
-    // 预设的字体缩放比例系数
-    self.fontTypeMap = @{
-      @(FontType095): @(0.95),
-      @(FontType100): @(1.00),
-      @(FontType105): @(1.05),
-      @(FontType110): @(1.10),
+	if (self = [super init]) {
+		// 预设的字体缩放比例系数
+		self.fontTypeMap = @{
+			@(FontType095): @(0.95),
+			@(FontType100): @(1.00),
+			@(FontType105): @(1.05),
+			@(FontType110): @(1.10),
 			@(FontType115): @(1.15),
 			@(FontType120): @(1.20),
 			@(FontType125): @(1.25),
 			@(FontType130): @(1.30),
-    };
+		};
 		
 		NSNumber *scale = [[NSUserDefaults standardUserDefaults] objectForKey:kAppFontScale];
 		CGFloat fontScale = [self handlerConversionAccuracyWithNumber:scale scale:2];
 		self.fontScale = fontScale ? fontScale : 1.0;
-  }
-  return self;
+	}
+	return self;
 }
 
 
 #pragma mark - public
 
 - (void)updateFontType:(FontType)fontType {
-	//先获取当前选中的缩放系数
-	NSNumber *selScale = [self.fontTypeMap objectForKey:@(fontType)];
-	[self saveScale:selScale];
-	
-	[[UIApplication sharedApplication] updateFontTheme];
-	[[NSNotificationCenter defaultCenter] postNotificationName:kFontSizeDidChangeNotification object:nil];
+	//获取当前选中的缩放系数
+	[self updateFontType:fontType isRefresh:NO];
 }
 
+- (void)updateFontType:(FontType)fontType isRefresh:(BOOL)isRefresh {
+	//获取当前选中的缩放系数
+	NSNumber *selScale = [self.fontTypeMap objectForKey:@(fontType)];
+	[self saveScale:selScale];
+	self.fontScale = [self handlerConversionAccuracyWithNumber:selScale scale:2];
+	if(isRefresh) {
+		[[UIApplication sharedApplication] updateFontTheme];
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:kFontSizeDidChangeNotification object:nil];
+}
 
 #pragma mark - private
 
